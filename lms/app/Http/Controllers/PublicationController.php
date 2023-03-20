@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Publication;
+use Exception;
 use Illuminate\Http\Request;
 
 class PublicationController extends Controller
@@ -11,15 +13,24 @@ class PublicationController extends Controller
      */
     public function index()
     {
-        //
+        return view('publication.create');
     }
 
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create(Request $request)
     {
-        //
+        $pub = new Publication();
+        $pub->publicationsname = $request->publicationsname;
+        $pub->publicationDeatils = $request->publicationDeatils;
+        try {
+            $pub->save();
+            return redirect(route('publication.index'))
+                ->with('success', 'publication Create Successfully');
+        } catch (\Throwable $th) {
+            throw $th;
+        }
     }
 
     /**
@@ -43,7 +54,9 @@ class PublicationController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $project = Publication::find($id);
+
+        return view('publication.edit', compact('project'));
     }
 
     /**
@@ -51,7 +64,20 @@ class PublicationController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        try {
+            $pub = Publication::find($id);
+            $pub->publicationsname = $request->publicationsname;
+            $pub->publicationDeatils = $request->publicationDeatils;
+            $pub->save();
+            return redirect(route('publication.index'))
+                ->with('success', 'publication Update Successfully');
+        } catch (Exception $e) {
+
+            return [
+                "message" => $e->getMessage(),
+                "status" => $e->getCode()
+            ];
+        }
     }
 
     /**
@@ -59,6 +85,8 @@ class PublicationController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        Publication::destroy($id);
+        return redirect(route('publication.index'))
+            ->with('success', 'publication Delete Successfully');
     }
 }
