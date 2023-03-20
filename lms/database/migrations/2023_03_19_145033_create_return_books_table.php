@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('return_books', function (Blueprint $table) {
             $table->id();
+
             $table->timestamps();
         });
     }

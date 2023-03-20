@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('name', 128)->index();
             $table->string('description', 225)->nullable();
+            $table->unsignedBigInteger('publicationId');
             $table->timestamps();
         });
     }

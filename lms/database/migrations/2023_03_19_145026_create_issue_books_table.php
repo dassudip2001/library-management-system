@@ -13,6 +13,9 @@ return new class extends Migration
     {
         Schema::create('issue_books', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('studentId');
+            $table->unsignedBigInteger('booksId');
+            $table->string('status');
             $table->timestamps();
         });
     }

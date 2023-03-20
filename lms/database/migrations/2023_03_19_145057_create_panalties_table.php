@@ -13,6 +13,9 @@ return new class extends Migration
     {
         Schema::create('panalties', function (Blueprint $table) {
             $table->id();
+            $table->double('price');
+            $table->string('penaltyResign');
+            $table->unsignedBigInteger('studentId');
             $table->timestamps();
         });
     }
