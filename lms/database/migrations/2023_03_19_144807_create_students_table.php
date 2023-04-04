@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create('students', function (Blueprint $table) {
             $table->id();
-            $table->string('address');
-            $table->string('studentId');
+            $table->string('address')->nullable();
+            $table->string('studentId')->unique()->index();
             $table->unsignedBigInteger('branchId');
             $table->timestamps();
         });

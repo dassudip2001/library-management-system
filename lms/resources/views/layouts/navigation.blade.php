@@ -27,7 +27,7 @@
                     </x-nav-link>
                 </div>
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-nav-link :href="route('books.index')" :active="request()->routeIs('books.index')">
+                    <x-nav-link :href="route('create-student.index')" :active="request()->routeIs('create-student.index')">
                         {{ __('Add Student') }}
                     </x-nav-link>
                 </div>
