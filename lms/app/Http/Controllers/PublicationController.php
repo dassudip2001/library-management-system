@@ -13,7 +13,8 @@ class PublicationController extends Controller
      */
     public function index()
     {
-        return view('publication.create');
+        $publication = Publication::get();
+        return view('publication.create', compact('publication'));
     }
 
     /**
@@ -21,12 +22,16 @@ class PublicationController extends Controller
      */
     public function create(Request $request)
     {
+        $request->validate([
+            'publicationsName' => 'required|unique:publications',
+
+        ]);
         $pub = new Publication();
-        $pub->publicationsname = $request->publicationsname;
+        $pub->publicationsName = $request->publicationsName;
         $pub->publicationDeatils = $request->publicationDeatils;
         try {
             $pub->save();
-            return redirect(route('publication.index'))
+            return redirect(route('publications.index'))
                 ->with('success', 'publication Create Successfully');
         } catch (\Throwable $th) {
             throw $th;
@@ -66,10 +71,10 @@ class PublicationController extends Controller
     {
         try {
             $pub = Publication::find($id);
-            $pub->publicationsname = $request->publicationsname;
+            $pub->publicationsName = $request->publicationsName;
             $pub->publicationDeatils = $request->publicationDeatils;
             $pub->save();
-            return redirect(route('publication.index'))
+            return redirect(route('publications.index'))
                 ->with('success', 'publication Update Successfully');
         } catch (Exception $e) {
 
@@ -86,7 +91,7 @@ class PublicationController extends Controller
     public function destroy(string $id)
     {
         Publication::destroy($id);
-        return redirect(route('publication.index'))
+        return redirect(route('publications.index'))
             ->with('success', 'publication Delete Successfully');
     }
 }
