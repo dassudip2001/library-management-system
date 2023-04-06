@@ -32,15 +32,30 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
+// Books 
+// get books
 Route::get('books', [BookController::class, 'index'])->name('books.index');
+// post books
+Route::post('books', [BookController::class, 'create'])->name('books.create');
+// edit books
+Route::get('books/edit/{id}', [BookController::class, 'edit'])->name('books.edit');
+// update books
+Route::put('books/edit/{id}', [BookController::class, 'update'])->name('books.update');
+// delete books
+Route::get('books/delete/{id}', [BookController::class, 'destroy'])->name('books.destroy');
 
+
+
+// publications
 // get
 Route::get('publications', [PublicationController::class, 'index'])->name('publications.index');
 // post
 Route::post('publications', [PublicationController::class, 'create'])->name('publications.create');
 // edit
 Route::get('publications/edit/{id}', [PublicationController::class, 'edit'])->name('publications.edit');
+// update
 Route::put('publications/edit/{id}', [PublicationController::class, 'update'])->name('publications.update');
+// delete
 Route::get('publications/delete/{id}', [PublicationController::class, 'destroy'])->name('publications.destroy');
 
 
