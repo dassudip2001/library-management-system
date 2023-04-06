@@ -12,9 +12,9 @@
                 <hr>
             </div>
             <div class="card-body">
-                <form action="" method="post" enctype="multipart/form-data">
-                    @method('PUT')
+                <form action="" method="POST" enctype="multipart/form-data">
                     @csrf
+                    @method('PUT')
                     <!-- Auther name  -->
                     <div class="mb-6">
                         <label for="name"> Name<span class="required" style="color: red;">*</span></label>
