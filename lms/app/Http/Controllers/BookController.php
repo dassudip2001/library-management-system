@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Book;
 use App\Models\Publication;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class BookController extends Controller
 {
@@ -14,8 +15,16 @@ class BookController extends Controller
     public function index()
     {
         $pub = Publication::get();
+        $books = Book::latest()->paginate(5);
 
-        return view('books.create', compact('pub'));
+        $book = DB::table('books')
+            ->join('publications', 'publications.id', '=', 'books.publicationId')
+            ->paginate(5);
+
+        // return view('index', compact('products'))
+        // ->with('i', (request()->input('page', 1) - 1) * 5);
+
+        return view('books.create', compact('pub', 'books', 'book'));
     }
 
     /**
@@ -26,7 +35,7 @@ class BookController extends Controller
         $request->validate([
             'name' => 'required',
             'description' => 'required',
-            'image' => 'required',
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'publicationId' => 'required'
         ]);
 
@@ -92,6 +101,6 @@ class BookController extends Controller
     public function destroy(string $id)
     {
         Book::destroy($id);
-        return redirect(route('book.index'))->with('success', 'Books Deleted successfully');
+        return redirect(route('books.index'))->with('success', 'Books Deleted successfully');
     }
 }

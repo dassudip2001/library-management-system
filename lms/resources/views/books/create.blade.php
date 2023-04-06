@@ -32,7 +32,7 @@
                                     aria-label="Close"></button>
                             </div>
                             <div class="modal-body">
-                                <form action="" method="post">
+                                <form action="{{ route('books.create') }}" method="post" enctype="multipart/form-data">
                                     @csrf
                                     <!-- Auther name  -->
                                     <div class="mb-6">
@@ -108,20 +108,24 @@
                         </tr>
                     </thead>
                     <tbody>
-                        {{-- @foreach ($publication as $key => $pub)
+                        @foreach ($book as $key => $pub)
                             <tr>
                                 <th scope="row">{{ $key + 1 }}</th>
+                                <td>{{ $pub->name }}</td>
+                                <td>{{ $pub->description }}</td>
                                 <td>{{ $pub->publicationsName }}</td>
-                                <td>{{ $pub->publicationDeatils }}</td>
+                                <td><img src="/images/{{ $pub->image }}" width="100px" alt=""
+                                        srcset=""></td>
+
                                 <td>
-                                    <a style="color: black" href=" {{ url('/publications/edit', $pub->id) }} ">
+                                    <a style="color: black" href=" {{ url('/books/edit', $pub->id) }} ">
                                         <i class="fa-regular fa-pen-to-square"></i>
                                     </a>
-                                    <a style="color: red" href=" {{ url('/publications/delete', $pub->id) }} ">
+                                    <a style="color: red" href=" {{ url('/books/delete', $pub->id) }} ">
                                         <button type="submit"><i class="fa-solid fa-trash"></i></button>
                                 </td>
                             </tr>
-                        @endforeach --}}
+                        @endforeach
                     </tbody>
                 </table>
             </div>
