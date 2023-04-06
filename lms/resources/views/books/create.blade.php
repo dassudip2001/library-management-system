@@ -36,42 +36,46 @@
                                     @csrf
                                     <!-- Auther name  -->
                                     <div class="mb-6">
-                                        <label for="publicationsName"> Name<span class="required"
+                                        <label for="name"> Name<span class="required"
                                                 style="color: red;">*</span></label>
                                         <input type="text"
-                                            class="form-control form-control-sm  @error('publicationsName') is-invalid @enderror"
-                                            name="publicationsName" id="publicationsName"
-                                            aria-describedby="publicationsName" placeholder=" Books Name">
+                                            class="form-control form-control-sm  @error('name') is-invalid @enderror"
+                                            name="name" id="name" aria-describedby="name"
+                                            placeholder=" Books Name">
                                     </div>
                                     {{-- Auther name --}}
                                     <div class="mb-6">
-                                        <label for="publicationsName"> Auther<span class="required"
+                                        <label for="publicationId"> Auther<span class="required"
                                                 style="color: red;">*</span></label>
 
                                         <div class="input-group mb-3">
                                             <label class="input-group-text" for="inputGroupSelect01">Options</label>
-                                            <select class="form-select" id="inputGroupSelect01">
+                                            <select class="form-select" name="publicationId" id="inputGroupSelect01">
                                                 <option selected>Choose...</option>
-                                                <option value="1">One</option>
-                                                <option value="2">Two</option>
-                                                <option value="3">Three</option>
+                                                @foreach ($pub as $publication)
+                                                    <option value="{{ $publication->id }}">
+                                                        {{ $publication->publicationsName }}
+                                                    </option>
+                                                @endforeach
                                             </select>
                                         </div>
                                     </div>
                                     {{-- img --}}
                                     <div class="mb-6">
-                                        <label for="publicationDeatils">Image<span class="required"
+                                        <label for="image">Image<span class="required"
                                                 style="color: red;">*</span></label>
-                                        <input type="file" class="form-control form-control-sm" id="inputGroupFile04"
-                                            aria-describedby="inputGroupFileAddon04" aria-label="Upload">
+                                        <div class="form-group">
+
+                                            <input type="file" name="image" class="form-control"
+                                                placeholder="image">
+                                        </div>
 
                                     </div>
                                     <!-- Details -->
                                     <div class="mb-6">
-                                        <label for="publicationDeatils">Describption</label>
-                                        <textarea type="text" class="form-control form-control-sm  @error('publicationDeatils') is-invalid @enderror"
-                                            name="publicationDeatils" id="publicationDeatils" row="3" aria-describedby="publicationDeatils"
-                                            placeholder="Enter Describption"></textarea>
+                                        <label for="description">Describption</label>
+                                        <textarea type="text" class="form-control form-control-sm  @error('description') is-invalid @enderror"
+                                            name="description" id="description" row="3" aria-describedby="description" placeholder="Enter Describption"></textarea>
 
                                     </div>
 

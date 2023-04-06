@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Book;
+use App\Models\Publication;
 use Illuminate\Http\Request;
 
 class BookController extends Controller
@@ -12,8 +13,9 @@ class BookController extends Controller
      */
     public function index()
     {
+        $pub = Publication::get();
 
-        return view('books.create');
+        return view('books.create', compact('pub'));
     }
 
     /**
@@ -21,16 +23,26 @@ class BookController extends Controller
      */
     public function create(Request $request)
     {
-        $book = new Book();
-        $book->name = $request->name;
-        $book->description = $request->description;
-        $book->publicationId = $request['publicationId'];
-        try {
-            $book->save();
-            return redirect(route('book.index'))->with('success', 'created successfully');
-        } catch (\Throwable $th) {
-            //throw $th;
+        $request->validate([
+            'name' => 'required',
+            'description' => 'required',
+            'image' => 'required',
+            'publicationId' => 'required'
+        ]);
+
+        $input = $request->all();
+
+        if ($image = $request->file('image')) {
+            $destinationPath = 'images/';
+            $profileImage = date('YmdHis') . "." . $image->getClientOriginalExtension();
+            $image->move($destinationPath, $profileImage);
+            $input['image'] = "$profileImage";
         }
+
+        Book::create($input);
+
+        return redirect()->route('books.index')
+            ->with('success', 'Books created successfully.');
     }
 
     /**
