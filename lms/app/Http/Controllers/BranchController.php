@@ -13,7 +13,8 @@ class BranchController extends Controller
      */
     public function index()
     {
-        return view('branch.create');
+        $b = Branch::get();
+        return view('branch.create', compact('b'));
         //
     }
 
@@ -25,13 +26,13 @@ class BranchController extends Controller
         $b = new Branch();
         $b->branchName = $request->branchName;
         $b->branchCode = $request->branchCode;
-        $b->branchDescribption = $request->branchDescribption;
+        $b->branchDescription = $request->branchDescription;
 
         try {
             $b->save();
-            return redirect(route('branch.index'))->with('success', 'Branch Created successfully');
+            return redirect(route('create-branch.index'))->with('success', 'Branch Created successfully');
         } catch (\Throwable $th) {
-            //throw $th;
+            throw $th;
         }
     }
 
@@ -69,7 +70,7 @@ class BranchController extends Controller
             $b = Branch::find($id);
             $b->branchName = $request->branchName;
             $b->branchCode = $request->branchCode;
-            $b->branchDescribption = $request->branchDescribption;
+            $b->branchDescription = $request->branchDescription;
             $b->save();
             return redirect(route('branch.index'))->with('success', 'Branch Created Successfully');
         } catch (\Throwable $th) {

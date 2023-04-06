@@ -19,7 +19,7 @@ class BookController extends Controller
 
         $book = DB::table('books')
             ->join('publications', 'publications.id', '=', 'books.publicationId')
-            ->paginate(5);
+            ->paginate(3);
 
         // return view('index', compact('products'))
         // ->with('i', (request()->input('page', 1) - 1) * 5);

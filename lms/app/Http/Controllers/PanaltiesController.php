@@ -11,7 +11,7 @@ class PanaltiesController extends Controller
      */
     public function index()
     {
-        //
+        return view('panalties.create');
     }
 
     /**

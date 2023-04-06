@@ -27,7 +27,7 @@
                     <div class="modal-dialog modal-dialog-centered">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h1 class="modal-title fs-5" id="exampleModalToggleLabel">Publication | Auther Name</h1>
+                                <h1 class="modal-title fs-5" id="exampleModalToggleLabel">Branches</h1>
                                 <button type="button" class="btn-close" data-bs-dismiss="modal"
                                     aria-label="Close"></button>
                             </div>
@@ -36,18 +36,27 @@
                                     @csrf
                                     <!-- Auther name  -->
                                     <div class="mb-6">
-                                        <label for="publicationsName">Auther Name<span class="required"
+                                        <label for="branchName"> Name<span class="required"
                                                 style="color: red;">*</span></label>
                                         <input type="text"
-                                            class="form-control form-control-sm  @error('publicationsName') is-invalid @enderror"
-                                            name="publicationsName" id="publicationsName"
-                                            aria-describedby="publicationsName" placeholder=" Auther Name">
+                                            class="form-control form-control-sm  @error('branchName') is-invalid @enderror"
+                                            name="branchName" id="branchName" aria-describedby="branchName"
+                                            placeholder="  Name">
+                                    </div>
+                                    {{-- code --}}
+                                    <div class="mb-6">
+                                        <label for="branchCode"> Code<span class="required"
+                                                style="color: red;">*</span></label>
+                                        <input type="text"
+                                            class="form-control form-control-sm  @error('branchCode') is-invalid @enderror"
+                                            name="branchCode" id="branchCode" aria-describedby="branchCode"
+                                            placeholder=" Code">
                                     </div>
                                     <!-- Details -->
                                     <div class="mb-6">
-                                        <label for="publicationDeatils">Describption</label>
-                                        <textarea type="text" class="form-control form-control-sm  @error('publicationDeatils') is-invalid @enderror"
-                                            name="publicationDeatils" id="publicationDeatils" row="3" aria-describedby="publicationDeatils"
+                                        <label for="branchDescription">Describption</label>
+                                        <textarea type="text" class="form-control form-control-sm  @error('branchDescription') is-invalid @enderror"
+                                            name="branchDescription" id="branchDescription" row="3" aria-describedby="branchDescription"
                                             placeholder="Enter Describption"></textarea>
 
                                     </div>
@@ -73,25 +82,27 @@
                         <tr>
                             <th scope="col">#</th>
                             <th scope="col"> Name</th>
+                            <th scope="col"> Code</th>
                             <th scope="col">Describption</th>
                             <th scope="col">Action</th>
                         </tr>
                     </thead>
                     <tbody>
-                        {{-- @foreach ($publication as $key => $pub)
+                        @foreach ($b as $key => $pub)
                             <tr>
                                 <th scope="row">{{ $key + 1 }}</th>
-                                <td>{{ $pub->publicationsName }}</td>
-                                <td>{{ $pub->publicationDeatils }}</td>
+                                <td>{{ $pub->branchName }}</td>
+                                <td>{{ $pub->branchCode }}</td>
+                                <td>{{ $pub->branchDescription }}</td>
                                 <td>
-                                    <a style="color: black" href=" {{ url('/publications/edit', $pub->id) }} ">
+                                    <a style="color: black" href=" {{ url('/create-branch/edit', $pub->id) }} ">
                                         <i class="fa-regular fa-pen-to-square"></i>
                                     </a>
-                                    <a style="color: red" href=" {{ url('/publications/delete', $pub->id) }} ">
+                                    <a style="color: red" href=" {{ url('/create-branch/delete', $pub->id) }} ">
                                         <button type="submit"><i class="fa-solid fa-trash"></i></button>
                                 </td>
                             </tr>
-                        @endforeach --}}
+                        @endforeach
                     </tbody>
                 </table>
             </div>

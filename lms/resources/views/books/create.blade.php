@@ -128,6 +128,7 @@
                         @endforeach
                     </tbody>
                 </table>
+                {{ $book->onEachSide(3)->links() }}
             </div>
         </div>
 

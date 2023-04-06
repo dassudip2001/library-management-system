@@ -60,7 +60,31 @@ Route::get('publications/delete/{id}', [PublicationController::class, 'destroy']
 
 
 Route::get('create-student', [StudentController::class, 'index'])->name('create-student.index');
+
+
+// branches
+// get branches
 Route::get('create-branch', [BranchController::class, 'index'])->name('create-branch.index');
+// post branches
+Route::post('create-branch', [BranchController::class, 'create'])->name('create-branch.create');
+// edit branches
+Route::get('create-branch/edit/{id}', [BranchController::class, 'edit'])->name('create-branch.edit');
+// update branches
+Route::put('create-branch/edit/{id}', [BranchController::class, 'update'])->name('create-branch.update');
+// delete branches
+Route::post('create-branch/delete/{id}', [BranchController::class, 'destroy'])->name('create-branch.destroy');
+
+
+
+// penalties routes
+Route::get('penalties', [StudentController::class, 'index'])->name('penalties.index');
+// book issues
+Route::get('book-issue', [StudentController::class, 'index'])->name('book-issue.index');
+
+// book return
+Route::get('book-return', [StudentController::class, 'index'])->name('book-return.index');
+
+
 
 
 
