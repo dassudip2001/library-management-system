@@ -72,7 +72,7 @@ Route::get('create-branch/edit/{id}', [BranchController::class, 'edit'])->name('
 // update branches
 Route::put('create-branch/edit/{id}', [BranchController::class, 'update'])->name('create-branch.update');
 // delete branches
-Route::post('create-branch/delete/{id}', [BranchController::class, 'destroy'])->name('create-branch.destroy');
+Route::get('create-branch/delete/{id}', [BranchController::class, 'destroy'])->name('create-branch.destroy');
 
 
 

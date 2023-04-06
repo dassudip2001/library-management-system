@@ -58,7 +58,7 @@ class BranchController extends Controller
     public function edit(string $id)
     {
         $b = Branch::find($id);
-        return view('publication.edit', compact('b'));
+        return view('branch.edit', compact('b'));
     }
 
     /**
@@ -72,7 +72,7 @@ class BranchController extends Controller
             $b->branchCode = $request->branchCode;
             $b->branchDescription = $request->branchDescription;
             $b->save();
-            return redirect(route('branch.index'))->with('success', 'Branch Created Successfully');
+            return redirect(route('create-branch.index'))->with('success', 'Branch update Successfully');
         } catch (\Throwable $th) {
             throw $th;
         }
@@ -84,6 +84,6 @@ class BranchController extends Controller
     public function destroy(string $id)
     {
         Branch::destroy($id);
-        return redirect(route('publications.index'))->with('success', 'Branch created successfully');
+        return redirect(route('create-branch.index'))->with('success', 'Branch delete successfully');
     }
 }
