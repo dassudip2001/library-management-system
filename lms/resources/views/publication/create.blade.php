@@ -44,8 +44,7 @@
                                     </div>
                                     <!-- Details -->
                                     <div class="mb-6">
-                                        <label for="publicationDeatils">Describption<span class="required"
-                                                style="color: red;">*</span></label>
+                                        <label for="publicationDeatils">Describption</label>
                                         <textarea type="text" class="form-control form-control-sm  @error('publicationDeatils') is-invalid @enderror"
                                             name="publicationDeatils" id="publicationDeatils" row="3" aria-describedby="publicationDeatils"
                                             placeholder="Enter Describption"></textarea>
@@ -63,13 +62,13 @@
 
                 <button class="btn btn-primary float-end mt-2 mx-2" data-bs-target="#exampleModalToggle"
                     data-bs-toggle="modal">Add New Publication</button>
-                <h5 class="mt-2 mx-2">Publication</h5>
+                <h5 class="mt-2 mx-2">Publication | Auther Name</h5>
                 <hr>
 
             </div>
             <div class="card-body">
-                <table class="table">
-                    <thead>
+                <table class="table table-success">
+                    <thead class="table-dark">
                         <tr>
                             <th scope="col">#</th>
                             <th scope="col">Auther Name</th>
