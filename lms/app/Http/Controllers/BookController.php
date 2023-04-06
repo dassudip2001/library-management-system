@@ -76,7 +76,7 @@ class BookController extends Controller
     public function edit(string $id)
     {
         $book = Book::find($id);
-        return view('book.edit', compact('book'));
+        return view('books.edit', compact('book'));
     }
 
     /**
@@ -84,15 +84,26 @@ class BookController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        try {
-            $books = Book::find($id);
-            $books->description = $request->description;
-            $books->publicationId = $request['publicationId'];
-            $books->save();
-            return redirect(route('book.index'))->with('success', 'Book Update Successfully');
-        } catch (\Throwable $th) {
-            throw $th;
+        // $request->validate([
+        //     'name' => 'required',
+
+        // ]);
+
+        $input = $request->all();
+
+        if ($image = $request->file('image')) {
+            $destinationPath = 'images/';
+            $profileImage = date('YmdHis') . "." . $image->getClientOriginalExtension();
+            $image->move($destinationPath, $profileImage);
+            $input['image'] = "$profileImage";
+        } else {
+            unset($input['image']);
         }
+
+        Book::update($input);
+
+        return redirect()->route('index')
+            ->with('success', 'Product updated successfully');
     }
 
     /**

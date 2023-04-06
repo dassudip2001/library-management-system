@@ -35,7 +35,7 @@
                                                 style="color: red;">*</span></label>
                                         <textarea type="text" class="form-control form-control-sm  @error('publicationDeatils') is-invalid @enderror"
                                             name="publicationDeatils" id="publicationDeatils" row="3" value="{{ $project->publicationDeatils }}"
-                                            aria-describedby="publicationDeatils" placeholder="Enter Describption"></textarea>
+                                            aria-describedby="publicationDeatils" placeholder="Enter Describption">{{ $project->publicationDeatils }}</textarea>
                                         {{-- <input type="text"
                                             class="form-control form-control-sm  @error('publicationDeatils') is-invalid @enderror"
                                             name="publicationDeatils" id="publicationDeatils" row="3"
