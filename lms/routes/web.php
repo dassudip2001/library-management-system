@@ -47,15 +47,15 @@ Route::get('books/delete/{id}', [BookController::class, 'destroy'])->name('books
 
 
 // publications
-// get
+// get publications
 Route::get('publications', [PublicationController::class, 'index'])->name('publications.index');
-// post
+// post publications
 Route::post('publications', [PublicationController::class, 'create'])->name('publications.create');
-// edit
+// edit publications
 Route::get('publications/edit/{id}', [PublicationController::class, 'edit'])->name('publications.edit');
-// update
+// update   publications
 Route::put('publications/edit/{id}', [PublicationController::class, 'update'])->name('publications.update');
-// delete
+// delete publications
 Route::get('publications/delete/{id}', [PublicationController::class, 'destroy'])->name('publications.destroy');
 
 
