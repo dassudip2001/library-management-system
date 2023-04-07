@@ -17,13 +17,18 @@
                     </x-nav-link>
                 </div>
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-nav-link :href="route('books.index')" :active="request()->routeIs('books.index')">
-                        {{ __('Books') }}
+                    <x-nav-link :href="route('create-branch.index')" :active="request()->routeIs('create-branch.index')">
+                        {{ __('Branch') }}
                     </x-nav-link>
                 </div>
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-nav-link :href="route('publications.index')" :active="request()->routeIs('publications.index')">
                         {{ __('Publication') }}
+                    </x-nav-link>
+                </div>
+                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                    <x-nav-link :href="route('books.index')" :active="request()->routeIs('books.index')">
+                        {{ __('Books') }}
                     </x-nav-link>
                 </div>
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
@@ -44,11 +49,6 @@
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-nav-link :href="route('book-return.index')" :active="request()->routeIs('book-return.index')">
                         {{ __('Books Return') }}
-                    </x-nav-link>
-                </div>
-                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-nav-link :href="route('create-branch.index')" :active="request()->routeIs('create-branch.index')">
-                        {{ __('Branch') }}
                     </x-nav-link>
                 </div>
             </div>

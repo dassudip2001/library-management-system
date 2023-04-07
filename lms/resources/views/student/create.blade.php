@@ -28,31 +28,81 @@
                         <div class="modal-content">
                             <div class="modal-header">
                                 <h1 class="modal-title fs-5" id="exampleModalToggleLabel">
-                                    Publication | Auther Name</h1>
+                                    Students</h1>
                                 <button type="button" class="btn-close" data-bs-dismiss="modal"
                                     aria-label="Close"></button>
                             </div>
                             <div class="modal-body">
                                 <form action="" method="post">
                                     @csrf
-                                    <!-- Auther name  -->
+                                    <!--  name  -->
                                     <div class="mb-6">
-                                        <label for="publicationsName">Auther Name<span class="required"
+                                        <label for="name"> Name<span class="required"
                                                 style="color: red;">*</span></label>
                                         <input type="text"
-                                            class="form-control form-control-sm  @error('publicationsName') is-invalid @enderror"
-                                            name="publicationsName" id="publicationsName"
-                                            aria-describedby="publicationsName" placeholder=" Auther Name">
+                                            class="form-control form-control-sm  @error('name') is-invalid @enderror"
+                                            name="name" id="name" aria-describedby="name" placeholder="Name">
                                     </div>
-                                    <!-- Details -->
+                                    {{-- email --}}
                                     <div class="mb-6">
-                                        <label for="publicationDeatils">Describption</label>
-                                        <textarea type="text" class="form-control form-control-sm  @error('publicationDeatils') is-invalid @enderror"
-                                            name="publicationDeatils" id="publicationDeatils" row="3" aria-describedby="publicationDeatils"
-                                            placeholder="Enter Describption"></textarea>
-
+                                        <label for="email"> Email<span class="required"
+                                                style="color: red;">*</span></label>
+                                        <input type="email"
+                                            class="form-control form-control-sm  @error('email') is-invalid @enderror"
+                                            name="email" id="email" aria-describedby="email" placeholder="Email">
                                     </div>
+                                    {{-- phone --}}
+                                    <div class="mb-6">
+                                        <label for="phone"> Phone<span class="required"
+                                                style="color: red;">*</span></label>
+                                        <input type="number"
+                                            class="form-control form-control-sm  @error('phone') is-invalid @enderror"
+                                            name="phone" id="phone" aria-describedby="phone" placeholder=" phone">
+                                    </div>
+                                    {{-- studentId --}}
+                                    <div class="mb-6">
+                                        <label for="studentId"> Student Id<span class="required"
+                                                style="color: red;">*</span></label>
+                                        <input type="text"
+                                            class="form-control form-control-sm  @error('studentId') is-invalid @enderror"
+                                            name="studentId" id="studentId" aria-describedby="studentId"
+                                            placeholder=" Student Id">
+                                    </div>
+                                    {{-- branch  --}}
+                                    <div class="mb-6">
+                                        <label for="publicationId"> Branch<span class="required"
+                                                style="color: red;">*</span></label>
 
+                                        <div class="input-group mb-3">
+                                            <label class="input-group-text" for="inputGroupSelect01">Options</label>
+                                            <select class="form-select" name="publicationId" id="inputGroupSelect01">
+                                                <option selected>Choose...</option>
+                                                {{-- @foreach ($pub as $publication)
+                                                    <option value="{{ $publication->id }}">
+                                                        {{ $publication->publicationsName }}
+                                                    </option>
+                                                @endforeach --}}
+                                            </select>
+                                        </div>
+                                    </div>
+                                    {{-- password --}}
+                                    <div class="mb-6">
+                                        <label for="password"> Password<span class="required"
+                                                style="color: red;">*</span></label>
+                                        <input type="password"
+                                            class="form-control form-control-sm  @error('email') is-invalid @enderror"
+                                            name="password" id="password" aria-describedby="password"
+                                            placeholder=" Password">
+                                    </div>
+                                    {{-- password confermation --}}
+                                    <div class="mb-6">
+                                        <label for="password">Conferm Password<span class="required"
+                                                style="color: red;">*</span></label>
+                                        <input type="password"
+                                            class="form-control form-control-sm  @error('email') is-invalid @enderror"
+                                            name="password" id="password" aria-describedby="password"
+                                            placeholder="Confirm Password">
+                                    </div>
                             </div>
                             <div class="modal-footer">
                                 <button type="submit" class="btn btn-denger">Save</button>
@@ -85,7 +135,7 @@
                         {{-- @foreach ($publication as $key => $pub)
                                                 <tr>
                                                     <th scope="row">{{ $key + 1 }}</th>
-                                                    <td>{{ $pub->publicationsName }}</td>
+                                                    <td>{{ $pub->name }}</td>
                                                     <td>{{ $pub->publicationDeatils }}</td>
                                                     <td>
                                                         <a style="color: black"
