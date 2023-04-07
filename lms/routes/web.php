@@ -3,7 +3,10 @@
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\BookController;
 use App\Http\Controllers\BranchController;
+use App\Http\Controllers\IssueBooksController;
+use App\Http\Controllers\PanaltiesController;
 use App\Http\Controllers\PublicationController;
+use App\Http\Controllers\ReturnBooksController;
 use App\Http\Controllers\StudentController;
 use Illuminate\Support\Facades\Route;
 
@@ -58,8 +61,18 @@ Route::put('publications/edit/{id}', [PublicationController::class, 'update'])->
 // delete publications
 Route::get('publications/delete/{id}', [PublicationController::class, 'destroy'])->name('publications.destroy');
 
-
+// students
+// get students
 Route::get('create-student', [StudentController::class, 'index'])->name('create-student.index');
+// get students
+Route::post('create-student', [StudentController::class, 'create'])->name('create-student.create');
+// edit students
+Route::get('create-student/edit/{id}', [StudentController::class, 'edit'])->name('create-student.edit');
+// update students
+Route::put('create-student/edit/{id}', [StudentController::class, 'update'])->name('create-student.update');
+// delete students
+Route::get('create-student/delete/{id}', [StudentController::class, 'destroy'])->name('create-student.destroy');
+
 
 
 // branches
@@ -77,12 +90,42 @@ Route::get('create-branch/delete/{id}', [BranchController::class, 'destroy'])->n
 
 
 // penalties routes
-Route::get('penalties', [StudentController::class, 'index'])->name('penalties.index');
+// get penalty routes
+Route::get('penalties', [PanaltiesController::class, 'index'])->name('penalties.index');
+// create penalty routes
+Route::post('penalties', [PanaltiesController::class, 'create'])->name('penalties.create');
+// edit penalty routes
+Route::get('penalties/edit/{id}', [PanaltiesController::class, 'edit'])->name('penalties.edit');
+// update penalty routes
+Route::put('penalties/edit/{id}', [PanaltiesController::class, 'update'])->name('penalties.update');
+// delete penalty routes
+Route::get('penalties/delete/{id}', [PanaltiesController::class, 'destroy'])->name('penalties.destroy');
+
 // book issues
-Route::get('book-issue', [StudentController::class, 'index'])->name('book-issue.index');
+// get issues bookstore
+Route::get('book-issue', [IssueBooksController::class, 'index'])->name('book-issue.index');
+// create issues book
+Route::post('book-issue', [IssueBooksController::class, 'create'])->name('book-issue.create');
+// edit issues book
+Route::get('book-issue/edit/{id}', [IssueBooksController::class, 'edit'])->name('book-issue.edit');
+// update issues book
+Route::put('book-issue/edit/{id}', [IssueBooksController::class, 'update'])->name('book-issue.update');
+// delete issues book
+Route::get('book-issue/delete/{id}', [IssueBooksController::class, 'destroy'])->name('book-issue.destroy');
+
 
 // book return
-Route::get('book-return', [StudentController::class, 'index'])->name('book-return.index');
+// get book return
+Route::get('book-return', [ReturnBooksController::class, 'index'])->name('book-return.index');
+// create book return
+Route::post('book-return', [ReturnBooksController::class, 'create'])->name('book-return.create');
+// edit book return
+Route::get('book-return/edit/{id}', [ReturnBooksController::class, 'edit'])->name('book-return.edit');
+// update book return
+Route::put('book-return/edit/{id}', [ReturnBooksController::class, 'update'])->name('book-return.update');
+// delete book return
+Route::get('book-return/delete/{id}', [ReturnBooksController::class, 'destroy'])->name('book-return.destroy');
+
 
 
 

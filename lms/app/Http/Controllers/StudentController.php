@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Branch;
 use Illuminate\Http\Request;
 
 class StudentController extends Controller
@@ -11,7 +12,8 @@ class StudentController extends Controller
      */
     public function index()
     {
-        return view('student.create');
+        $br = Branch::get();
+        return view('student.create', compact('br'));
     }
 
     /**

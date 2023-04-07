@@ -77,11 +77,11 @@
                                             <label class="input-group-text" for="inputGroupSelect01">Options</label>
                                             <select class="form-select" name="publicationId" id="inputGroupSelect01">
                                                 <option selected>Choose...</option>
-                                                {{-- @foreach ($pub as $publication)
+                                                @foreach ($br as $publication)
                                                     <option value="{{ $publication->id }}">
-                                                        {{ $publication->publicationsName }}
+                                                        {{ $publication->branchName }}
                                                     </option>
-                                                @endforeach --}}
+                                                @endforeach
                                             </select>
                                         </div>
                                     </div>
