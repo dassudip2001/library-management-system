@@ -70,12 +70,12 @@
                                     </div>
                                     {{-- branch  --}}
                                     <div class="mb-6">
-                                        <label for="publicationId"> Branch<span class="required"
+                                        <label for="branchId"> Branch<span class="required"
                                                 style="color: red;">*</span></label>
 
                                         <div class="input-group mb-3">
                                             <label class="input-group-text" for="inputGroupSelect01">Options</label>
-                                            <select class="form-select" name="publicationId" id="inputGroupSelect01">
+                                            <select class="form-select" name="branchId" id="inputGroupSelect01">
                                                 <option selected>Choose...</option>
                                                 @foreach ($br as $publication)
                                                     <option value="{{ $publication->id }}">
@@ -90,17 +90,17 @@
                                         <label for="password"> Password<span class="required"
                                                 style="color: red;">*</span></label>
                                         <input type="password"
-                                            class="form-control form-control-sm  @error('email') is-invalid @enderror"
+                                            class="form-control form-control-sm  @error('password') is-invalid @enderror"
                                             name="password" id="password" aria-describedby="password"
                                             placeholder=" Password">
                                     </div>
                                     {{-- password confermation --}}
                                     <div class="mb-6">
-                                        <label for="password">Conferm Password<span class="required"
+                                        <label for="password_confirmation">Conferm Password<span class="required"
                                                 style="color: red;">*</span></label>
                                         <input type="password"
-                                            class="form-control form-control-sm  @error('email') is-invalid @enderror"
-                                            name="password" id="password" aria-describedby="password"
+                                            class="form-control form-control-sm  @error('password_confirmation') is-invalid @enderror"
+                                            name="password_confirmation" id="password" aria-describedby="password"
                                             placeholder="Confirm Password">
                                     </div>
                             </div>
@@ -132,23 +132,22 @@
                         </tr>
                     </thead>
                     <tbody>
-                        {{-- @foreach ($publication as $key => $pub)
-                                                <tr>
-                                                    <th scope="row">{{ $key + 1 }}</th>
-                                                    <td>{{ $pub->name }}</td>
-                                                    <td>{{ $pub->publicationDeatils }}</td>
-                                                    <td>
-                                                        <a style="color: black"
-                                                            href=" {{ url('/publications/edit', $pub->id) }} ">
-                                                            <i class="fa-regular fa-pen-to-square"></i>
-                                                        </a>
-                                                        <a style="color: red"
-                                                            href=" {{ url('/publications/delete', $pub->id) }} ">
-                                                            <button type="submit"><i
-                                                                    class="fa-solid fa-trash"></i></button>
-                                                    </td>
-                                                </tr>
-                                            @endforeach --}}
+                        @foreach ($student as $key => $pub)
+                            <tr>
+                                <th scope="row">{{ $key + 1 }}</th>
+                                <td>{{ $pub->name }}</td>
+                                <td> {{ $pub->studentId }} </td>
+                                <td>{{ $pub->email }}</td>
+                                <td>
+                                    <a style="color: black"
+                                        href=" {{ url('/pucreate-studentblications/edit', $pub->id) }} ">
+                                        <i class="fa-regular fa-pen-to-square"></i>
+                                    </a>
+                                    <a style="color: red" href=" {{ url('/create-student/delete', $pub->id) }} ">
+                                        <button type="submit"><i class="fa-solid fa-trash"></i></button>
+                                </td>
+                            </tr>
+                        @endforeach
                     </tbody>
                 </table>
             </div>

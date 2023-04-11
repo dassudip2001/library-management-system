@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('phone')->nullable();
             $table->string('studentId')->unique()->index();
             $table->unsignedBigInteger('branchId');
+            $table->unsignedBigInteger('user_id');
             $table->timestamps();
         });
     }
