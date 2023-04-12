@@ -139,8 +139,7 @@
                                 <td> {{ $pub->studentId }} </td>
                                 <td>{{ $pub->email }}</td>
                                 <td>
-                                    <a style="color: black"
-                                        href=" {{ url('/pucreate-studentblications/edit', $pub->id) }} ">
+                                    <a style="color: black" href=" {{ url('/create-student/edit', $pub->id) }} ">
                                         <i class="fa-regular fa-pen-to-square"></i>
                                     </a>
                                     <a style="color: red" href=" {{ url('/create-student/delete', $pub->id) }} ">

@@ -89,20 +89,20 @@ class StudentController extends Controller
      */
     public function edit(string $id)
     {
-        // $showDept = Branch::all();
+        $showDept = Branch::all();
 
-        // $createUser = Student::with(
-        //     [
-        //         'user' => function ($q) {
-        //             $q->select(['id', 'name', 'email',]);
-        //         },
+        $createUser = Student::with(
+            [
+                'user' => function ($q) {
+                    $q->select(['id', 'name', 'email',]);
+                },
 
-        //         'stream' => function ($q) {
-        //             $q->select(['id',  'streamName', 'streamCode']);
-        //         }
-        //     ]
-        // )->find($id);
-        // return view('student.edit', compact('createUser', 'showDept'));
+                'branch' => function ($q) {
+                    $q->select(['id',  'branchName', 'branchCode']);
+                }
+            ]
+        )->find($id);
+        return view('student.edit', compact('createUser', 'showDept'));
     }
 
     /**
@@ -110,44 +110,44 @@ class StudentController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        // try {
-        //     $this->validate($request, [
-        //         'name' => 'required|string|max:255',
-        //         'email' => 'required|string|email|max:255|unique:users',
-        //         'password' => 'required|string|confirmed|min:8',
+        try {
+            $this->validate($request, [
+                'name' => 'required|string|max:255',
+                // 'email' => 'required|string|email|max:255|unique:users',
+                'password' => 'required|string|confirmed|min:8',
+                'branchId' => 'required'
 
-        //     ]);
-        //     $fields = $request->only([
-        //         'name', 'email', 'password', 'idNumber',
-        //         'phoneNumber', 'streamID',
-        //     ]);
+            ]);
+            $fields = $request->only([
+                'name', 'email', 'password', 'branchId', 'phone', 'studentId', 'user_id'
+            ]);
 
-        //     $uc = Student::find($id)->user_id;
+            $uc = Student::find($id)->user_id;
 
 
-        //     $user = User::find($uc);
-        //     $user->name = $fields['name'];
-        //     $user->email = $fields['email'];
+            $user = User::find($uc);
+            $user->name = $fields['name'];
+            $user->email = $fields['email'];
 
-        //     $user->password = bcrypt($fields['password']);
-        //     $user->save();
+            $user->password = bcrypt($fields['password']);
+            $user->save();
 
-        //     $updateCreateUser = Student::find($id);
-        //     $updateCreateUser->idNumber = $fields['idNumber'];
-        //     $updateCreateUser->phoneNumber = $fields['phoneNumber'];
-        //     $updateCreateUser->streamID = $fields['streamID'];
+            $updateCreateUser = Student::find($id);
+            $updateCreateUser->phone = $fields['phone'];
+            $updateCreateUser->studentId = $fields['studentId'];
+            $updateCreateUser->branchId = $fields['branchId'];
 
-        //     $updateCreateUser->save();
-        //     return redirect(route('student.index'))
-        //         ->with('success', 'User Update Successfully');
-        //     //code...
-        // } catch (Exception $e) {
+            $updateCreateUser->save();
+            return redirect(route('create-student.index'))
+                ->with('success', 'User Update Successfully');
+            //code...
+        } catch (Exception $e) {
 
-        //     return [
-        //         "message" => $e->getMessage(),
-        //         "status" => $e->getCode()
-        //     ];
-        // }
+            return [
+                "message" => $e->getMessage(),
+                "status" => $e->getCode()
+            ];
+        }
     }
 
     /**
