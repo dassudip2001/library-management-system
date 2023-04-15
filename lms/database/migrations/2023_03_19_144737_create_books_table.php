@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('name', 128)->index();
             $table->string('image');
             $table->string('description', 225)->nullable();
-            $table->integer('booksNumbers');
+            // $table->integer('booksNumbers');
             $table->unsignedBigInteger('publicationId');
             $table->timestamps();
         });

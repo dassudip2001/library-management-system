@@ -72,7 +72,7 @@
                                     </div>
                                     {{-- status --}}
                                     <div class="mb-6">
-                                        <label for="status"> Status<span class="required"
+                                        <label for="status">Return Status<span class="required"
                                                 style="color: red;">*</span></label>
                                         <input type="text"
                                             class="form-control form-control-sm  @error('status') is-invalid @enderror"

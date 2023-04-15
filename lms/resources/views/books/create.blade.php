@@ -71,12 +71,19 @@
                                         </div>
 
                                     </div>
+
+                                    {{-- <!-- stock -->
+                                    <div class="mb-6">
+                                        <label for="description">Describption</label>
+                                        <input type="number" name="booksNumbers" class="form-control"
+                                                placeholder="Number of Books">
+
+                                    </div> --}}
                                     <!-- Details -->
                                     <div class="mb-6">
                                         <label for="description">Describption</label>
                                         <textarea type="text" class="form-control form-control-sm  @error('description') is-invalid @enderror"
                                             name="description" id="description" row="3" aria-describedby="description" placeholder="Enter Describption"></textarea>
-
                                     </div>
 
                             </div>
