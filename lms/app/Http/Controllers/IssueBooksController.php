@@ -69,7 +69,7 @@ class IssueBooksController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        return view('issuebook.edit');
     }
 
     /**

@@ -75,7 +75,7 @@
                                         <select class="form-select" name="status" id="inputGroupSelect01">
                                             <option selected>Choose...</option>
                                             <option>Return</option>
-                                            <option>Not-Return</option>
+                                            <option>Pending</option>
                                         </select>
                                     </div>
                             </div>
@@ -111,7 +111,11 @@
                                 <th scope="row">{{ $key + 1 }}</th>
                                 <td>{{ $pub->studentId }}</td>
                                 <td> {{ $pub->name }} </td>
-                                <td>{{ $pub->status }}</td>
+                                @if ($pub->status != 'Return')
+                                    <td style="color: green">{{ $pub->status }}</td>
+                                @else
+                                    <td style="color: red">{{ $pub->status }}</td>
+                                @endif
                                 <td>
                                     <a style="color: black" href=" {{ url('/book-issue/edit', $pub->id) }} ">
                                         <i class="fa-regular fa-pen-to-square"></i>
