@@ -38,7 +38,6 @@
                             <div class="modal-body">
                                 <form action="" method="post">
                                     @csrf
-
                                     {{-- studentId --}}
                                     <div class="mb-6">
                                         <label for="studentId"> Student Id<span class="required"
@@ -57,7 +56,6 @@
                                     <div class="mb-6">
                                         <label for="booksId"> Books<span class="required"
                                                 style="color: red;">*</span></label>
-
                                         <div class="input-group mb-3">
                                             <label class="input-group-text" for="inputGroupSelect01">Options</label>
                                             <select class="form-select" name="booksId" id="inputGroupSelect01">
@@ -74,12 +72,12 @@
                                     <div class="mb-6">
                                         <label for="status">Return Status<span class="required"
                                                 style="color: red;">*</span></label>
-                                        <input type="text"
-                                            class="form-control form-control-sm  @error('status') is-invalid @enderror"
-                                            name="status" id="status" aria-describedby="status"
-                                            placeholder=" status ">
+                                        <select class="form-select" name="status" id="inputGroupSelect01">
+                                            <option selected>Choose...</option>
+                                            <option>Return</option>
+                                            <option>Not-Return</option>
+                                        </select>
                                     </div>
-
                             </div>
                             <div class="modal-footer">
                                 <button type="submit" class="btn btn-denger">Save</button>
@@ -103,8 +101,7 @@
                             <th scope="col">#</th>
                             <th scope="col">Student id | Name</th>
                             <th scope="col">Books</th>
-                            <th scope="col">Status</th>
-
+                            <th scope="col">Return Books Status</th>
                             <th scope="col">Action</th>
                         </tr>
                     </thead>
