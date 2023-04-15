@@ -69,23 +69,13 @@
                                             <input type="file" name="image" class="form-control"
                                                 placeholder="image">
                                         </div>
-
                                     </div>
-
-                                    {{-- <!-- stock -->
-                                    <div class="mb-6">
-                                        <label for="description">Describption</label>
-                                        <input type="number" name="booksNumbers" class="form-control"
-                                                placeholder="Number of Books">
-
-                                    </div> --}}
                                     <!-- Details -->
                                     <div class="mb-6">
                                         <label for="description">Describption</label>
                                         <textarea type="text" class="form-control form-control-sm  @error('description') is-invalid @enderror"
                                             name="description" id="description" row="3" aria-describedby="description" placeholder="Enter Describption"></textarea>
                                     </div>
-
                             </div>
                             <div class="modal-footer">
                                 <button type="submit" class="btn btn-denger">Save</button>
@@ -94,12 +84,10 @@
                         </div>
                     </div>
                 </div>
-
                 <button class="btn btn-primary float-end mt-2 mx-2" data-bs-target="#exampleModalToggle"
                     data-bs-toggle="modal">Add New Books</button>
                 <h5 class="mt-2 mx-2">Books</h5>
                 <hr>
-
             </div>
             <div class="card-body">
                 <table class="table table-success">
@@ -110,6 +98,8 @@
                             <th scope="col">Describption</th>
                             <th scope="col">Books Auther</th>
                             <th scope="col">Books Image</th>
+                            <th scope="col">Created Date</th>
+
 
                             <th scope="col">Action</th>
                         </tr>
@@ -123,6 +113,8 @@
                                 <td>{{ $pub->publicationsName }}</td>
                                 <td><img src="/images/{{ $pub->image }}" width="100px" alt=""
                                         srcset=""></td>
+                                <td>{{ $pub->created_at }}</td>
+
 
                                 <td>
                                     <a style="color: black" href=" {{ url('/books/edit', $pub->id) }} ">

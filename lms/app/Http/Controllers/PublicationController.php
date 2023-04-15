@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Publication;
 use Exception;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class PublicationController extends Controller
 {
@@ -13,8 +14,10 @@ class PublicationController extends Controller
      */
     public function index()
     {
-        $publication = Publication::get();
-        return view('publication.create', compact('publication'));
+        // $st = DB::table('users')
+        //     ->join('students', 'students.id', '=', 'users.id')->get();
+
+        return view('publication.create', compact('st'));
     }
 
     /**

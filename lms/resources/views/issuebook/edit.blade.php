@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-            {{ __('Dashboard') }}
+            {{ __('Edit Issue Books Page') }}
         </h2>
     </x-slot>
 
@@ -9,7 +9,7 @@
     <div class="container mt-4">
         <div class="card">
             <div class="card-title">
-                <h4 class="mt-2 mx-2">Edit Issue Books Page</h4>
+                <h4 class="mt-2 mx-2"><b>Edit Issue Books Page</b> </h4>
                 <hr>
             </div>
             <div class="card-body">

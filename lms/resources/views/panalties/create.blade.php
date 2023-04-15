@@ -38,31 +38,41 @@
                                 <form action="" method="post">
                                     @csrf
 
-                                    {{-- studentId --}}
+                                    {{-- Student ID --}}
                                     <div class="mb-6">
                                         <label for="studentId"> Student Id<span class="required"
-                                                style="color: red;">*</span></label>
-                                        <input type="text"
-                                            class="form-control form-control-sm  @error('studentId') is-invalid @enderror"
-                                            name="studentId" id="studentId" aria-describedby="studentId"
-                                            placeholder=" Student Id">
-                                    </div>
-                                    {{-- branch  --}}
-                                    <div class="mb-6">
-                                        <label for="branchId"> Branch<span class="required"
                                                 style="color: red;">*</span></label>
 
                                         <div class="input-group mb-3">
                                             <label class="input-group-text" for="inputGroupSelect01">Options</label>
-                                            <select class="form-select" name="branchId" id="inputGroupSelect01">
+                                            <select class="form-select" name="studentId" id="inputGroupSelect01">
                                                 <option selected>Choose...</option>
-                                                {{-- @foreach ($br as $publication)
+                                                @foreach ($st as $publication)
                                                     <option value="{{ $publication->id }}">
-                                                        {{ $publication->branchName }}
+                                                        Name:{{ $publication->name }} || StudentId:
+                                                        {{ $publication->studentId }}
                                                     </option>
-                                                @endforeach --}}
+                                                @endforeach
                                             </select>
                                         </div>
+                                    </div>
+
+                                    {{-- panelty Amount --}}
+                                    <div class="mb-6">
+                                        <label for="price">Panelty Amount<span class="required"
+                                                style="color: red;">*</span></label>
+                                        <input type="number"
+                                            class="form-control form-control-sm  @error('price') is-invalid @enderror"
+                                            name="price" id="price" aria-describedby="price"
+                                            placeholder="Amount ">
+                                    </div>
+                                    {{-- Panelty Resign  --}}
+                                    <div class="mb-6">
+                                        <label for="penaltyResign">Panelty Resign<span class="required"
+                                                style="color: red;">*</span></label>
+                                        <textarea type="text" class="form-control form-control-sm  @error('penaltyResign') is-invalid @enderror"
+                                            name="penaltyResign" id="penaltyResign" row="3" aria-describedby="penaltyResign"
+                                            placeholder="Enter Describption"></textarea>
                                     </div>
 
                             </div>
@@ -86,7 +96,7 @@
                     <thead class="table-dark">
                         <tr>
                             <th scope="col">#</th>
-                            <th scope="col">Student name</th>
+                            <th scope="col">Panelty Resign</th>
                             <th scope="col">Student ID</th>
 
                             <th scope="col">Amount</th>
@@ -94,21 +104,21 @@
                         </tr>
                     </thead>
                     <tbody>
-                        {{-- @foreach ($student as $key => $pub)
+                        @foreach ($pn as $key => $pub)
                             <tr>
                                 <th scope="row">{{ $key + 1 }}</th>
-                                <td>{{ $pub->name }}</td>
-                                <td> {{ $pub->studentId }} </td>
-                                <td>{{ $pub->email }}</td>
+                                <td>{{ $pub->penaltyResign }}</td>
+                                <td>{{ $pub->studentId }}</td>
+                                <td> {{ $pub->price }} </td>
                                 <td>
-                                    <a style="color: black" href=" {{ url('/create-student/edit', $pub->id) }} ">
+                                    <a style="color: black" href=" {{ url('/penalties/edit', $pub->id) }} ">
                                         <i class="fa-regular fa-pen-to-square"></i>
                                     </a>
-                                    <a style="color: red" href=" {{ url('/create-student/delete', $pub->id) }} ">
+                                    <a style="color: red" href=" {{ url('/penalties/delete', $pub->id) }} ">
                                         <button type="submit"><i class="fa-solid fa-trash"></i></button>
                                 </td>
                             </tr>
-                        @endforeach --}}
+                        @endforeach
                     </tbody>
                 </table>
             </div>

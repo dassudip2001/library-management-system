@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Panalty;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class PanaltiesController extends Controller
 {
@@ -11,15 +13,30 @@ class PanaltiesController extends Controller
      */
     public function index()
     {
-        return view('panalties.create');
+        $st = DB::table('users')
+            ->join('students', 'students.id', '=', 'users.id')->get();
+        $pn = DB::table('panalties')
+            ->join('students', 'students.id', '=', 'panalties.studentId')->get();
+        return view('panalties.create', compact('st', 'pn'));
     }
 
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create(Request $request)
     {
-        //
+        $pn = new Panalty();
+        $pn->penaltyResign = $request['penaltyResign'];
+        $pn->price = $request['price'];
+        $pn->studentId = $request['studentId'];
+        try {
+            $pn->save();
+            return
+                redirect(route('penalties.index'))->with('success', 'Branch Created successfully');
+            //code...
+        } catch (\Throwable $th) {
+            throw $th;
+        }
     }
 
     /**
