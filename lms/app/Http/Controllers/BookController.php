@@ -52,6 +52,7 @@ class BookController extends Controller
         $input->name = $request['name'];
         $input->description = $request['description'];
         $input->copyNumber = $request['copyNumber'];
+        $input->remainingCopy = $request['copyNumber'];
         $input->publicationId = $request['publicationId'];
 
 

@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('image');
             $table->string('description', 225)->nullable();
             $table->string('copyNumber',);
+            $table->string('remainingCopy');
             $table->unsignedBigInteger('publicationId');
             $table->timestamps();
         });
