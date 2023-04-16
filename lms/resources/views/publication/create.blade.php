@@ -62,7 +62,7 @@
 
                 <button class="btn btn-primary float-end mt-2 mx-2" data-bs-target="#exampleModalToggle"
                     data-bs-toggle="modal">Add New Publication</button>
-                <h5 class="mt-2 mx-2">Publication | Auther Name</h5>
+                <h5 class="mt-2 mx-2 fs-3">Publication | Auther Name</h5>
                 <hr>
 
             </div>
@@ -93,6 +93,7 @@
                         @endforeach
                     </tbody>
                 </table>
+                {{ $publication->onEachSide(5)->links() }}
             </div>
         </div>
 

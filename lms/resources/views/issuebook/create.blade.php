@@ -57,7 +57,7 @@
                                         <label for="booksId"> Books<span class="required"
                                                 style="color: red;">*</span></label>
                                         <div class="input-group mb-3">
-                                            <label class="input-group-text" for="inputGroupSelect01">Options</label>
+                                            {{-- <label class="input-group-text" for="inputGroupSelect01">Options</label> --}}
                                             <select class="form-select" name="booksId" id="inputGroupSelect01">
                                                 <option selected>Choose...</option>
                                                 @foreach ($br as $publication)
@@ -90,7 +90,7 @@
                 <button class="btn btn-primary float-end mt-2 mx-2" data-bs-target="#exampleModalToggle"
                     data-bs-toggle="modal">Add New
                     Issue Book</button>
-                <h5 class="mt-2 mx-2"> <b>Issue Book</b> </h5>
+                <h5 class="mt-2 mx-2 fs-3"> <b>Issue Book</b> </h5>
                 <hr>
 
             </div>
