@@ -106,7 +106,7 @@
                             <th scope="col">Books Auther</th>
                             <th scope="col">Books Image</th>
                             <th scope="col">Number Of Copy</th>
-                            <th scope="col">Created Date</th>
+                            <th scope="col">Remeaning Books Copy</th>
                             <th scope="col">Action</th>
                         </tr>
                     </thead>
@@ -120,7 +120,7 @@
                                 <td><img src="/images/{{ $pub->image }}" width="100px" alt=""
                                         srcset=""></td>
                                 <td>{{ $pub->copyNumber }}</td>
-                                <td>{{ $pub->created_at }}</td>
+                                <td>{{ $pub->remainingCopy }}</td>
                                 <td>
                                     <a style="color: black" href=" {{ url('/books/edit', $pub->id) }} ">
                                         <i class="fa-regular fa-pen-to-square"></i>
