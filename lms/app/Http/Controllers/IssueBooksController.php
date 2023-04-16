@@ -38,6 +38,20 @@ class IssueBooksController extends Controller
         $bi->studentId = $request['studentId'];
         $bi->booksId = $request['booksId'];
         $bi->status = $request['status'];
+
+        $updateBooksId = $request['booksId'];
+
+        if ($bi->status == 'Pending') {
+            $rechecking = Book::find($updateBooksId);
+            $rechecking->remainingCopy = $rechecking->remainingCopy - 1;
+            $rechecking->update();
+        } else if ($bi->status == 'Return') {
+            $update = Book::find($updateBooksId);
+            $update->remainingCopy = $update->remainingCopy - 1;
+            $update->update();
+        } else {
+            return "Something Went Wrong";
+        }
         try {
             $bi->save();
             return redirect(route('book-issue.index'))->with('success', 'Book Issue Created successfully');
