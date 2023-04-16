@@ -32,26 +32,42 @@ class BookController extends Controller
      */
     public function create(Request $request)
     {
+        // dd($request->all());
         $request->validate([
             'name' => 'required',
             'description' => 'required',
+            'copyNumber' => 'required',
             'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'publicationId' => 'required'
         ]);
 
-        $input = $request->all();
 
+        $input = new Book();
         if ($image = $request->file('image')) {
             $destinationPath = 'images/';
             $profileImage = date('YmdHis') . "." . $image->getClientOriginalExtension();
             $image->move($destinationPath, $profileImage);
             $input['image'] = "$profileImage";
         }
+        $input->name = $request['name'];
+        $input->description = $request['description'];
+        $input->copyNumber = $request['copyNumber'];
+        $input->publicationId = $request['publicationId'];
 
-        Book::create($input);
 
-        return redirect()->route('books.index')
-            ->with('success', 'Books created successfully.');
+        // $input = $request->all();
+
+        try {
+            $input->save();
+            //code...
+            return redirect()->route('books.index')
+                ->with('success', 'Books created successfully.');
+        } catch (\Throwable $th) {
+            throw $th;
+        }
+
+        // Book::create($input);
+
     }
 
     /**

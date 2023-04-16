@@ -43,11 +43,19 @@
                                             name="name" id="name" aria-describedby="name"
                                             placeholder=" Books Name">
                                     </div>
+                                    {{--  number of copy --}}
+                                    <div class="mb-6">
+                                        <label for="copyNumber">Copy <span class="required"
+                                                style="color: red;">*</span></label>
+                                        <input type="text"
+                                            class="form-control form-control-sm  @error('copyNumber') is-invalid @enderror"
+                                            name="copyNumber" id="copyNumber" aria-describedby="copyNumber"
+                                            placeholder="Numbrt of Copy ">
+                                    </div>
                                     {{-- Auther name --}}
                                     <div class="mb-6">
                                         <label for="publicationId"> Auther<span class="required"
                                                 style="color: red;">*</span></label>
-
                                         <div class="input-group mb-3">
                                             <label class="input-group-text" for="inputGroupSelect01">Options</label>
                                             <select class="form-select" name="publicationId" id="inputGroupSelect01">
@@ -65,7 +73,6 @@
                                         <label for="image">Image<span class="required"
                                                 style="color: red;">*</span></label>
                                         <div class="form-group">
-
                                             <input type="file" name="image" class="form-control"
                                                 placeholder="image">
                                         </div>
@@ -98,9 +105,8 @@
                             <th scope="col">Describption</th>
                             <th scope="col">Books Auther</th>
                             <th scope="col">Books Image</th>
+                            <th scope="col">Number Of Copy</th>
                             <th scope="col">Created Date</th>
-
-
                             <th scope="col">Action</th>
                         </tr>
                     </thead>
@@ -113,9 +119,8 @@
                                 <td>{{ $pub->publicationsName }}</td>
                                 <td><img src="/images/{{ $pub->image }}" width="100px" alt=""
                                         srcset=""></td>
+                                <td>{{ $pub->copyNumber }}</td>
                                 <td>{{ $pub->created_at }}</td>
-
-
                                 <td>
                                     <a style="color: black" href=" {{ url('/books/edit', $pub->id) }} ">
                                         <i class="fa-regular fa-pen-to-square"></i>

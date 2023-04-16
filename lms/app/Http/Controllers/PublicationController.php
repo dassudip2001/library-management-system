@@ -16,8 +16,9 @@ class PublicationController extends Controller
     {
         // $st = DB::table('users')
         //     ->join('students', 'students.id', '=', 'users.id')->get();
+        $publication = Publication::get();
 
-        return view('publication.create', compact('st'));
+        return view('publication.create', compact('publication'));
     }
 
     /**
