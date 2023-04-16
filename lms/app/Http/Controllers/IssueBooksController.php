@@ -6,6 +6,7 @@ use App\Models\Book;
 use App\Models\Branch;
 use App\Models\IssueBook;
 use App\Models\Student;
+use Exception;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -47,7 +48,7 @@ class IssueBooksController extends Controller
             $rechecking->update();
         } else if ($bi->status == 'Return') {
             $update = Book::find($updateBooksId);
-            $update->remainingCopy = $update->remainingCopy - 1;
+            $update->remainingCopy = $update->remainingCopy + 1;
             $update->update();
         } else {
             return "Something Went Wrong";
@@ -83,7 +84,25 @@ class IssueBooksController extends Controller
      */
     public function edit(string $id)
     {
-        return view('issuebook.edit');
+        $br = Book::get();
+        //show the table value 
+        $bi = Db::table('issue_books')
+            ->join('students', 'students.id', '=', 'issue_books.studentId')
+            ->join('books', 'books.id', '=', 'issue_books.booksId')->get();
+
+        $editIssue = IssueBook::with(
+            [
+                'students' => function ($q) {
+                    $q->select(['studentId']);
+                },
+
+                'books' => function ($q) {
+                    $q->select(['id',  'name']);
+                }
+            ]
+        )->find($id);
+
+        return view('issuebook.edit', compact('br', 'bi', 'editIssue'));
     }
 
     /**
@@ -91,7 +110,32 @@ class IssueBooksController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $bi =  IssueBook::find($id);
+        $bi->studentId = $request['studentId'];
+        $bi->booksId = $request['booksId'];
+        $bi->status = $request['status'];
+
+        $updateBooksId = $request['booksId'];
+
+        if ($bi->status == 'Pending') {
+            $rechecking = Book::find($updateBooksId);
+            $rechecking->remainingCopy = $rechecking->remainingCopy - 1;
+            $rechecking->update();
+        } else if ($bi->status == 'Return') {
+            $update = Book::find($updateBooksId);
+            $update->remainingCopy = $update->remainingCopy + 1;
+            $update->update();
+        } else {
+            return "Something Went Wrong";
+        }
+        try {
+            $bi->save();
+            return redirect(route('book-issue.index'))->with('success', 'Book Issue Created successfully');
+
+            //code...
+        } catch (\Throwable $th) {
+            throw $th;
+        }
     }
 
     /**
@@ -99,6 +143,17 @@ class IssueBooksController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        try {
+
+
+            IssueBook::find($id)->delete();
+            return redirect(route('book-issue.index'))->with('success', 'User Deleted Successfully');
+        } catch (Exception $e) {
+
+            return [
+                "message" => $e->getMessage(),
+                "status" => $e->getCode()
+            ];
+        }
     }
 }

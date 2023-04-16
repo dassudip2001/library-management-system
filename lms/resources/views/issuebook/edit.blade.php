@@ -22,12 +22,13 @@
                         <label for="studentId"> Student Id<span class="required" style="color: red;">*</span></label>
                         <select class="form-select" name="studentId" id="inputGroupSelect01">
                             <option selected>Choose...</option>
-                            {{-- @foreach ($st as $publication)
-                                                <option value="{{ $publication->id }}">
-                                                    Name: {{ $publication->name }} || Student ID
-                                                    {{ $publication->studentId }}
-                                                </option>
-                                            @endforeach --}}
+                            @foreach ($bi as $publication)
+                                <option value="{{ $publication->id }}"
+                                    {{ $publication->id == $editIssue->studentId ? 'selected' : '' }}>
+                                    Name: {{ $publication->name }} || Student ID
+                                    {{ $publication->studentId }}
+                                </option>
+                            @endforeach
                         </select>
                     </div>
                     {{-- branch  --}}
@@ -37,11 +38,13 @@
                             <label class="input-group-text" for="inputGroupSelect01">Options</label>
                             <select class="form-select" name="booksId" id="inputGroupSelect01">
                                 <option selected>Choose...</option>
-                                {{-- @foreach ($br as $publication)
-                                                    <option value="{{ $publication->id }}">
-                                                        {{ $publication->name }}
-                                                    </option>
-                                                @endforeach --}}
+                                @foreach ($br as $publication)
+                                    <option
+                                        value="{{ $publication->id }}"{{ $publication->id == $editIssue->booksId ? 'selected' : '' }}>
+
+                                        {{ $publication->name }}
+                                    </option>
+                                @endforeach
                             </select>
                         </div>
                     </div>
@@ -50,8 +53,9 @@
                         <label for="status">Return Status<span class="required" style="color: red;">*</span></label>
                         <select class="form-select" name="status" id="inputGroupSelect01">
                             <option selected>Choose...</option>
-                            <option>Return</option>
-                            <option>Pending</option>
+                            <option value="Return"{{ $editIssue->status == 'Return' ? 'selected' : '' }}>Return</option>
+                            <option value="Pending"{{ $editIssue->status == 'Pending' ? 'selected' : '' }}>Pending
+                            </option>
                         </select>
                     </div>
 
