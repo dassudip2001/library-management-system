@@ -27,7 +27,7 @@
                     <div class="modal-dialog modal-dialog-centered">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h1 class="modal-title fs-5" id="exampleModalToggleLabel">Books</h1>
+                                <h1 class="modal-title fs-5" id="exampleModalToggleLabel"><b>Books</b> </h1>
                                 <button type="button" class="btn-close" data-bs-dismiss="modal"
                                     aria-label="Close"></button>
                             </div>
@@ -57,7 +57,6 @@
                                         <label for="publicationId"> Auther<span class="required"
                                                 style="color: red;">*</span></label>
                                         <div class="input-group mb-3">
-                                            <label class="input-group-text" for="inputGroupSelect01">Options</label>
                                             <select class="form-select" name="publicationId" id="inputGroupSelect01">
                                                 <option selected>Choose...</option>
                                                 @foreach ($pub as $publication)

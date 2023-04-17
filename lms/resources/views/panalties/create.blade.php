@@ -44,7 +44,7 @@
                                                 style="color: red;">*</span></label>
 
                                         <div class="input-group mb-3">
-                                            <label class="input-group-text" for="inputGroupSelect01">Options</label>
+                                            {{-- <label class="input-group-text" for="inputGroupSelect01">Options</label> --}}
                                             <select class="form-select" name="studentId" id="inputGroupSelect01">
                                                 <option selected>Choose...</option>
                                                 @foreach ($st as $publication)
@@ -108,7 +108,7 @@
                             <tr>
                                 <th scope="row">{{ $key + 1 }}</th>
                                 <td>{{ $pub->penaltyResign }}</td>
-                                <td>{{ $pub->studentId }}</td>
+                                <td>{{ $pub->studentId }} </td>
                                 <td> {{ $pub->price }} </td>
                                 <td>
                                     <a style="color: black" href=" {{ url('/penalties/edit', $pub->id) }} ">

@@ -12,7 +12,7 @@
                     <div class="container">
                         <div class="card">
                             <div class="card-title">
-                                <h4 class="mt-2 mx-2">Edit Branch Details</h4>
+                                <h4 class="mt-2 mx-2 fs-3">Edit Branch Details</h4>
                                 <hr>
                             </div>
                             <div class="card-body">

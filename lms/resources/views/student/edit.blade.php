@@ -9,7 +9,7 @@
     <div class="container mt-4 overflow-auto">
         <div class="card">
             <div class="card-title">
-                <h4 class="mt-2 mx-2">Edit Student</h4>
+                <h4 class="mt-2 mx-2 fs-3">Edit Student</h4>
                 <hr>
             </div>
             <div class="card-body">
@@ -55,7 +55,7 @@
                         <label for="stream">Stream<span class="required" style="color: red;">*</span></label>
 
                         <div class="input-group mb-3">
-                            <label class="input-group-text" for="inputGroupSelect01">Options</label>
+                            {{-- <label class="input-group-text" for="inputGroupSelect01">Options</label> --}}
                             <select class="form-select" name="branchId" id="inputGroupSelect01">
                                 <option selected>Choose...</option>
                                 @foreach ($showDept as $publication)

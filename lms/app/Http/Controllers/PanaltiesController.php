@@ -14,9 +14,15 @@ class PanaltiesController extends Controller
     public function index()
     {
         $st = DB::table('users')
-            ->join('students', 'students.id', '=', 'users.id')->get();
+            ->join('students', 'students.user_id', '=', 'users.id')->get();
+
         $pn = DB::table('panalties')
-            ->join('students', 'students.id', '=', 'panalties.studentId')->get();
+            // ->join('students', 'students.user_id', '=', 'users.id')
+            ->join('students', 'students.id', '=', 'panalties.studentId')
+            ->get();
+
+        // $pn = DB::table('panalties')
+        //     ->join('students', 'students.user_id', '=', 'panalties.studentId')->get();
         return view('panalties.create', compact('st', 'pn'));
     }
 

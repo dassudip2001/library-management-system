@@ -63,7 +63,9 @@
 
                             </div>
                             <div class="modal-footer">
-                                <button type="submit" class="btn btn-denger">Save</button>
+                                <button
+                                    style="height:55px; background-color: #4CAF50;border: none; border-radius:20px;color: white;padding: 10px 12px;text-align: center;text-decoration: none;display: inline-block;font-size: 20px;with:50px;margin: 4px 2px;cursor: pointer;"
+                                    type="submit" class="btn btn-denger">Save</button>
                                 </form>
                             </div>
                         </div>

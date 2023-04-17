@@ -9,7 +9,7 @@
     <div class="container mt-4">
         <div class="card">
             <div class="card-title">
-                <h4 class="mt-2 mx-2"><b>Edit Issue Books Page</b> </h4>
+                <h4 class="mt-2 mx-2 fs-3"><b>Edit Issue Books Page</b> </h4>
                 <hr>
             </div>
             <div class="card-body">
