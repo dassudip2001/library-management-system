@@ -82,6 +82,11 @@ class PanaltiesController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        try {
+            Panalty::find('id', $id)->delete();
+            return redirect(route('penalties.index'))->with('success', 'Books Deleted successfully');
+        } catch (\Throwable $th) {
+            throw $th;
+        }
     }
 }
