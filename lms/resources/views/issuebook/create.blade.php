@@ -42,7 +42,11 @@
                                     <div class="mb-6">
                                         <label for="studentId"> Student Id<span class="required"
                                                 style="color: red;">*</span></label>
-                                        <select class="form-select" name="studentId" id="inputGroupSelect01">
+                                        @if (Auth::check())
+                                            Welcome, {{ Auth::user()->name }}
+                                        @endif
+
+                                        {{-- <select class="form-select" name="studentId" id="inputGroupSelect01">
                                             <option selected>Choose...</option>
                                             @foreach ($st as $publication)
                                                 <option value="{{ $publication->id }}">
@@ -50,7 +54,7 @@
                                                     {{ $publication->studentId }}
                                                 </option>
                                             @endforeach
-                                        </select>
+                                        </select> --}}
                                     </div>
                                     {{-- branch  --}}
                                     <div class="mb-6">
