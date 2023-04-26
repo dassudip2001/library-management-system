@@ -39,27 +39,27 @@ Route::middleware('auth')->group(function () {
 // get books
 Route::get('books', [BookController::class, 'index'])->name('books.index');
 // post books
-Route::post('books', [BookController::class, 'create'])->name('books.create');
+Route::post('books', [BookController::class, 'create'])->name('books.create')->middleware('can:manage_users');
 // edit books
-Route::get('books/edit/{id}', [BookController::class, 'edit'])->name('books.edit');
+Route::get('books/edit/{id}', [BookController::class, 'edit'])->name('books.edit')->middleware('can:manage_users');
 // update books
-Route::put('books/edit/{id}', [BookController::class, 'update'])->name('books.update');
+Route::put('books/edit/{id}', [BookController::class, 'update'])->name('books.update')->middleware('can:manage_users');
 // delete books
-Route::get('books/delete/{id}', [BookController::class, 'destroy'])->name('books.destroy');
+Route::get('books/delete/{id}', [BookController::class, 'destroy'])->name('books.destroy')->middleware('can:manage_users');
 
 
 
 // publications
 // get publications
-Route::get('publications', [PublicationController::class, 'index'])->name('publications.index');
+Route::get('publications', [PublicationController::class, 'index'])->name('publications.index')->middleware('can:manage_users');
 // post publications
-Route::post('publications', [PublicationController::class, 'create'])->name('publications.create');
+Route::post('publications', [PublicationController::class, 'create'])->name('publications.create')->middleware('can:manage_users');
 // edit publications
-Route::get('publications/edit/{id}', [PublicationController::class, 'edit'])->name('publications.edit');
+Route::get('publications/edit/{id}', [PublicationController::class, 'edit'])->name('publications.edit')->middleware('can:manage_users');
 // update   publications
-Route::put('publications/edit/{id}', [PublicationController::class, 'update'])->name('publications.update');
+Route::put('publications/edit/{id}', [PublicationController::class, 'update'])->name('publications.update')->middleware('can:manage_users');
 // delete publications
-Route::get('publications/delete/{id}', [PublicationController::class, 'destroy'])->name('publications.destroy');
+Route::get('publications/delete/{id}', [PublicationController::class, 'destroy'])->name('publications.destroy')->middleware('can:manage_users');
 
 // students
 // get students
@@ -77,15 +77,15 @@ Route::get('create-student/delete/{id}', [StudentController::class, 'destroy'])-
 
 // branches
 // get branches
-Route::get('create-branch', [BranchController::class, 'index'])->name('create-branch.index');
+Route::get('create-branch', [BranchController::class, 'index'])->name('create-branch.index')->middleware('can:manage_users');
 // post branches
-Route::post('create-branch', [BranchController::class, 'create'])->name('create-branch.create');
+Route::post('create-branch', [BranchController::class, 'create'])->name('create-branch.create')->middleware('can:manage_users');
 // edit branches
-Route::get('create-branch/edit/{id}', [BranchController::class, 'edit'])->name('create-branch.edit');
+Route::get('create-branch/edit/{id}', [BranchController::class, 'edit'])->name('create-branch.edit')->middleware('can:manage_users');
 // update branches
-Route::put('create-branch/edit/{id}', [BranchController::class, 'update'])->name('create-branch.update');
+Route::put('create-branch/edit/{id}', [BranchController::class, 'update'])->name('create-branch.update')->middleware('can:manage_users');
 // delete branches
-Route::get('create-branch/delete/{id}', [BranchController::class, 'destroy'])->name('create-branch.destroy');
+Route::get('create-branch/delete/{id}', [BranchController::class, 'destroy'])->name('create-branch.destroy')->middleware('can:manage_users');
 
 
 

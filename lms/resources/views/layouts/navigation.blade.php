@@ -16,26 +16,32 @@
                         {{ __('Dashboard') }}
                     </x-nav-link>
                 </div>
-                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-nav-link :href="route('create-branch.index')" :active="request()->routeIs('create-branch.index')">
-                        {{ __('Branch') }}
-                    </x-nav-link>
-                </div>
-                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-nav-link :href="route('publications.index')" :active="request()->routeIs('publications.index')">
-                        {{ __('Publication') }}
-                    </x-nav-link>
-                </div>
+                @can('manage_users')
+                    <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                        <x-nav-link :href="route('create-branch.index')" :active="request()->routeIs('create-branch.index')">
+                            {{ __('Branch') }}
+                        </x-nav-link>
+                    </div>
+                @endcan
+                @can('manage_users')
+                    <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                        <x-nav-link :href="route('publications.index')" :active="request()->routeIs('publications.index')">
+                            {{ __('Publication') }}
+                        </x-nav-link>
+                    </div>
+                @endcan
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-nav-link :href="route('books.index')" :active="request()->routeIs('books.index')">
                         {{ __('Books') }}
                     </x-nav-link>
                 </div>
-                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-nav-link :href="route('create-student.index')" :active="request()->routeIs('create-student.index')">
-                        {{ __('Add Student') }}
-                    </x-nav-link>
-                </div>
+                @can('manage_users')
+                    <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                        <x-nav-link :href="route('create-student.index')" :active="request()->routeIs('create-student.index')">
+                            {{ __('Add Student') }}
+                        </x-nav-link>
+                    </div>
+                @endcan
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-nav-link :href="route('book-issue.index')" :active="request()->routeIs('book-issue.index')">
                         {{ __('Books Issue') }}

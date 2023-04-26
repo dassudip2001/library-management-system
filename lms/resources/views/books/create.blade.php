@@ -106,7 +106,9 @@
                             <th scope="col">Books Image</th>
                             <th scope="col">Number Of Copy</th>
                             <th scope="col">Remeaning Books Copy</th>
-                            <th scope="col">Action</th>
+                            @can('manage_users')
+                                <th scope="col">Action</th>
+                            @endcan
                         </tr>
                     </thead>
                     <tbody>
@@ -120,13 +122,15 @@
                                         srcset=""></td>
                                 <td>{{ $pub->copyNumber }}</td>
                                 <td>{{ $pub->remainingCopy }}</td>
-                                <td>
-                                    <a style="color: black" href=" {{ url('/books/edit', $pub->id) }} ">
-                                        <i class="fa-regular fa-pen-to-square"></i>
-                                    </a>
-                                    <a style="color: red" href=" {{ url('/books/delete', $pub->id) }} ">
-                                        <button type="submit"><i class="fa-solid fa-trash"></i></button>
-                                </td>
+                                @can('manage_users')
+                                    <td>
+                                        <a style="color: black" href=" {{ url('/books/edit', $pub->id) }} ">
+                                            <i class="fa-regular fa-pen-to-square"></i>
+                                        </a>
+                                        <a style="color: red" href=" {{ url('/books/delete', $pub->id) }} ">
+                                            <button type="submit"><i class="fa-solid fa-trash"></i></button>
+                                    </td>
+                                @endcan
                             </tr>
                         @endforeach
                     </tbody>

@@ -1,24 +1,36 @@
-FROM php:8.1-apache
+FROM php:8.1-fpm
 
-WORKDIR /var/www/html
-
-COPY . /var/www/html
-
-RUN apt-get update && \
-    apt-get install -y \
-    git \
-    unzip \
+RUN apt-get update && apt-get install -y \
+    curl \
+    libonig-dev \
     libzip-dev \
-    && docker-php-ext-install \
-    pdo \
-    pdo_mysql \
-    zip \
-    && curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer \
-    && composer install --no-interaction --no-plugins --no-scripts
+    unzip \
+    zip
 
-RUN chown -R www-data:www-data /var/www/html/storage /var/www/html/bootstrap/cache
+RUN docker-php-ext-install pdo_mysql && \
+    docker-php-ext-install zip
 
-COPY ./docker/vhost.conf /etc/apache2/sites-available/000-default.conf
-RUN a2enmod rewrite
+RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
-CMD ["apache2-foreground"]
+WORKDIR /var/www
+
+COPY . .
+
+RUN composer install
+
+RUN cp .env.example .env        
+
+
+RUN php artisan optimize
+
+CMD php artisan serve --host=0.0.0.0 --port=8000
+
+
+FROM node:16-alpine as node
+
+WORKDIR /var/www
+COPY . .
+
+RUN npm install
+
+CMD npm run dev
