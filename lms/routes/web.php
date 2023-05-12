@@ -8,6 +8,7 @@ use App\Http\Controllers\PanaltiesController;
 use App\Http\Controllers\PublicationController;
 use App\Http\Controllers\ReturnBooksController;
 use App\Http\Controllers\StudentController;
+// use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -26,7 +27,10 @@ Route::get('/', function () {
 });
 
 Route::get('/dashboard', function () {
-    return view('dashboard');
+    // current time and date
+    $date = Carbon\Carbon::now();
+
+    return view('dashboard', compact('date'));
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
