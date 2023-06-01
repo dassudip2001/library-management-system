@@ -8,6 +8,7 @@ use App\Http\Controllers\PanaltiesController;
 use App\Http\Controllers\PublicationController;
 use App\Http\Controllers\ReturnBooksController;
 use App\Http\Controllers\StudentController;
+use Carbon\Carbon;
 // use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Route;
 
@@ -28,9 +29,16 @@ Route::get('/', function () {
 
 Route::get('/dashboard', function () {
     // current time and date
-    $date = Carbon\Carbon::now();
+    $now = Carbon::now();
+    $today = Carbon::today();
+    $dayOfWeek = $today->dayOfWeek;
+    $daysInMonth = $today->daysInMonth;
+    $weekNumber = $today->weekOfMonth;
+    $dayOfMonth = 1;
 
-    return view('dashboard', compact('date'));
+    $formattedDateTime = $now->format('Y-m-d H:i:s');
+
+    return view('dashboard', compact('formattedDateTime', 'today', 'dayOfWeek', 'daysInMonth', 'weekNumber', 'dayOfMonth'));
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {

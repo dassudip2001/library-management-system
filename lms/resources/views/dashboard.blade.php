@@ -18,7 +18,48 @@
 
 
                 {{-- image  --}}
-                {{-- {{ $date }} --}}
+                <div class="fs-1">
+                    Date & Time: {{ $formattedDateTime }}
+                </div>
+                <br>
+                <div class="container mt-2">
+
+                    <table style=" border-collapse: collapse;">
+                        <thead>
+                            <tr>
+                                <th>Sun</th>
+                                <th>Mon</th>
+                                <th>Tue</th>
+                                <th>Wed</th>
+                                <th>Thu</th>
+                                <th>Fri</th>
+                                <th>Sat</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @for ($week = 0; $week < 6; $week++)
+                                <tr>
+                                    @for ($day = 0; $day < 7; $day++)
+                                        <td style="width: 30px;height: 30px;text-align: center; vertical-align: middle;"
+                                            @if ($today->format('j') == $dayOfWeek && $today->format('W') == $weekNumber) class="today" @endif>
+                                            @if ($week == 0 && $dayOfWeek > $day)
+                                                &nbsp;
+                                            @else
+                                                {{ $dayOfMonth }}
+                                                @php
+                                                    $dayOfMonth++;
+                                                    if ($dayOfMonth > $daysInMonth) {
+                                                        break 2;
+                                                    }
+                                                @endphp
+                                            @endif
+                                        </td>
+                                    @endfor
+                                </tr>
+                            @endfor
+                        </tbody>
+                    </table>
+                </div>
 
             </div>
         </div>
