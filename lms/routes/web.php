@@ -105,13 +105,13 @@ Route::get('create-branch/delete/{id}', [BranchController::class, 'destroy'])->n
 // get penalty routes
 Route::get('penalties', [PanaltiesController::class, 'index'])->name('penalties.index');
 // create penalty routes
-Route::post('penalties', [PanaltiesController::class, 'create'])->name('penalties.create');
+Route::post('penalties', [PanaltiesController::class, 'create'])->name('penalties.create')->middleware('can:manage_users');
 // edit penalty routes
-Route::get('penalties/edit/{id}', [PanaltiesController::class, 'edit'])->name('penalties.edit');
+Route::get('penalties/edit/{id}', [PanaltiesController::class, 'edit'])->name('penalties.edit')->middleware('can:manage_users');
 // update penalty routes
-Route::put('penalties/edit/{id}', [PanaltiesController::class, 'update'])->name('penalties.update');
+Route::put('penalties/edit/{id}', [PanaltiesController::class, 'update'])->name('penalties.update')->middleware('can:manage_users');
 // delete penalty routes
-Route::get('penalties/delete/{id}', [PanaltiesController::class, 'destroy'])->name('penalties.destroy');
+Route::get('penalties/delete/{id}', [PanaltiesController::class, 'destroy'])->name('penalties.destroy')->middleware('can:manage_users');
 
 // book issues
 // get issues bookstore

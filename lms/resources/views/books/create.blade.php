@@ -90,10 +90,12 @@
                         </div>
                     </div>
                 </div>
+                @can('manage_users')
                 <button class="btn btn-primary float-end mt-2 mx-2" data-bs-target="#exampleModalToggle"
                     data-bs-toggle="modal">Add New Books</button>
                 <h5 class="mt-2 mx-2 fs-3"><b>Books</b> </h5>
                 <hr>
+                @endcan
             </div>
             <div class="card-body overflow-auto">
                 <table class="table table-success overflow-auto">

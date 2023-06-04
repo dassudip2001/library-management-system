@@ -27,12 +27,12 @@ CMD php artisan serve --host=0.0.0.0 --port=8000
 
 
 #2nd build 
-FROM node:16-alpine as node
+# FROM node:16-alpine as node
 
-WORKDIR /var/www
+# WORKDIR /var/www
 
-COPY . .
+# COPY . .
 
-RUN npm install
+# RUN npm install
 
-CMD npm run dev
+# CMD npm run dev
