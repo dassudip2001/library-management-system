@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('branchName', 100)->index()->unique();
             $table->string('branchCode', 50)->index()->unique();
             $table->string('branchDescription', 128)->nullable();
+            $table->unsignedBigInteger('user_id');
             $table->timestamps();
         });
     }

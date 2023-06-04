@@ -26,11 +26,3 @@ RUN php artisan optimize
 CMD php artisan serve --host=0.0.0.0 --port=8000
 
 
-FROM node:16-alpine as node
-
-WORKDIR /var/www
-COPY . .
-
-RUN npm install
-
-CMD npm run dev

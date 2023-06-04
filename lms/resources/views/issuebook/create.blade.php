@@ -42,7 +42,21 @@
                                     <div class="mb-6">
                                         <label for="studentId"> Student Id<span class="required"
                                                 style="color: red;">*</span></label>
+                                                <select class="form-select" name="studentId" id="inputGroupSelect01">
+                                            <option selected>Choose...</option>
+                                            @foreach ($st as $publication)
+                                                <option value="{{ $publication->id }}">
+                                                    Name: {{ $publication->name }} || Student ID
+                                                    {{ $publication->studentId }}
+                                                </option>
+                                            @endforeach
+                                        </select>
+                                                       
                                         @if (Auth::check())
+                                        <!-- <input type="text"
+                                            class="form-control form-control-sm  @error('studentId') is-invalid @enderror"
+                                            name="studentId" id="studentId" aria-describedby="studentId"
+                                            placeholder=" Books Name">  -->
                                             Welcome, {{ Auth::user()->name }}
                                         @endif
 

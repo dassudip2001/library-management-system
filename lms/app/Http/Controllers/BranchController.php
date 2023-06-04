@@ -27,6 +27,8 @@ class BranchController extends Controller
         $b->branchName = $request->branchName;
         $b->branchCode = $request->branchCode;
         $b->branchDescription = $request->branchDescription;
+        $b->user_id=auth()->user()->id;
+
 
         try {
             $b->save();

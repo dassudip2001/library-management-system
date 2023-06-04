@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('copyNumber',);
             $table->string('remainingCopy');
             $table->unsignedBigInteger('publicationId');
+            $table->unsignedBigInteger('user_id');
             $table->timestamps();
         });
     }

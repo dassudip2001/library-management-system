@@ -54,6 +54,8 @@ class BookController extends Controller
         $input->copyNumber = $request['copyNumber'];
         $input->remainingCopy = $request['copyNumber'];
         $input->publicationId = $request['publicationId'];
+        $input->user_id=auth()->user()->id;
+
 
 
         // $input = $request->all();

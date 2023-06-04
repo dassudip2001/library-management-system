@@ -15,7 +15,8 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('studentId');
             $table->unsignedBigInteger('booksId');
-            $table->string('status');
+            $table->string('status')->default('Pending');
+            $table->unsignedBigInteger('user_id');
             $table->timestamps();
         });
     }

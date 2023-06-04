@@ -15,7 +15,10 @@ return new class extends Migration
             $table->id();
             $table->string('penaltyResign');
             $table->double('price');
+            // add status 
+            $table->string('status')->default('pending');
             $table->unsignedBigInteger('studentId');
+            $table->unsignedBigInteger('user_id');
             $table->timestamps();
         });
     }

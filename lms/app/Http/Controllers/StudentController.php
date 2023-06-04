@@ -53,9 +53,7 @@ class StudentController extends Controller
         $pivot->phone = $fields['phone'];
         $pivot->studentId = $fields['studentId'];
         $pivot->branchId = $fields['branchId'];
-
-
-
+        $pivot->user_id=auth()->user()->id;
         try {
 
             $pivot->save();
@@ -136,6 +134,8 @@ class StudentController extends Controller
             $updateCreateUser->phone = $fields['phone'];
             $updateCreateUser->studentId = $fields['studentId'];
             $updateCreateUser->branchId = $fields['branchId'];
+            $updateCreateUser->user_id=auth()->user()->id;
+
 
             $updateCreateUser->save();
             return redirect(route('create-student.index'))

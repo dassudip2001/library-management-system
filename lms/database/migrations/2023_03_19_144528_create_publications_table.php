@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('publicationsName', 128)->index();
             $table->string('publicationDeatils', 120)->nullable();
+            $table->unsignedBigInteger('user_id');
             $table->timestamps();
         });
     }

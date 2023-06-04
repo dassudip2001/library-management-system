@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\panalties\PanaltyRequest;
 use App\Models\Panalty;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class PanaltiesController extends Controller
@@ -29,12 +31,14 @@ class PanaltiesController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create(Request $request)
+    public function create(PanaltyRequest $request)
     {
         $pn = new Panalty();
         $pn->penaltyResign = $request['penaltyResign'];
         $pn->price = $request['price'];
+        $pn->status=$request['status'];
         $pn->studentId = $request['studentId'];
+        $pn->user_id=auth()->user()->id;
         try {
             $pn->save();
             return

@@ -33,6 +33,8 @@ class PublicationController extends Controller
         $pub = new Publication();
         $pub->publicationsName = $request->publicationsName;
         $pub->publicationDeatils = $request->publicationDeatils;
+        $pub->user_id=auth()->user()->id;
+
         try {
             $pub->save();
             return redirect(route('publications.index'))
@@ -77,6 +79,8 @@ class PublicationController extends Controller
             $pub = Publication::find($id);
             $pub->publicationsName = $request->publicationsName;
             $pub->publicationDeatils = $request->publicationDeatils;
+            $pub->user_id=auth()->user()->id;
+            
             $pub->save();
             return redirect(route('publications.index'))
                 ->with('success', 'publication Update Successfully');

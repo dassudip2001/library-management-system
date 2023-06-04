@@ -3,11 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Book;
-use App\Models\Branch;
 use App\Models\IssueBook;
-use App\Models\Student;
 use Exception;
-use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -44,20 +41,28 @@ class IssueBooksController extends Controller
 
         if ($bi->status == 'Pending') {
             $rechecking = Book::find($updateBooksId);
-            $rechecking->remainingCopy = $rechecking->remainingCopy - 1;
-            $rechecking->update();
+
+            if ($rechecking->copyNumber !=0) {
+                // dd($rechecking->copyNumber);
+                $rechecking->remainingCopy = $rechecking->remainingCopy - 1;
+                $rechecking->update();
+            } else {
+                return "books number can't be negative";
+            }
         } else if ($bi->status == 'Return') {
             $update = Book::find($updateBooksId);
-            $update->remainingCopy = $update->remainingCopy + 1;
-            $update->update();
+            if ($update->copyNumber >= $update->remainingCopy) {
+                $update->remainingCopy = $update->remainingCopy + 1;
+                $update->update();
+            } else {
+                return "Original Number of copy not getter then remaining copy ";
+            }
         } else {
             return "Something Went Wrong";
         }
         try {
             $bi->save();
             return redirect(route('book-issue.index'))->with('success', 'Book Issue Created successfully');
-
-            //code...
         } catch (\Throwable $th) {
             throw $th;
         }

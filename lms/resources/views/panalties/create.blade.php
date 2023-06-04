@@ -83,12 +83,13 @@
                         </div>
                     </div>
                 </div>
-
+                @can('manage_users')               
                 <button class="btn btn-primary float-end mt-2 mx-2" data-bs-target="#exampleModalToggle"
                     data-bs-toggle="modal">Add New
                     Panalties</button>
                 <h5 class="mt-2 mx-2 fs-3"> <b>Panalties</b> </h5>
                 <hr>
+                @endcan
 
             </div>
             <div class="card-body">
@@ -100,7 +101,9 @@
                             <th scope="col">Student ID</th>
 
                             <th scope="col">Amount</th>
+                            @can('manage_users')
                             <th scope="col">Action</th>
+                            @endcan
                         </tr>
                     </thead>
                     <tbody>
@@ -110,6 +113,7 @@
                                 <td>{{ $pub->penaltyResign }}</td>
                                 <td>{{ $pub->studentId }} </td>
                                 <td> {{ $pub->price }} </td>
+                                @can('manage_users')
                                 <td>
                                     <a style="color: black" href=" {{ url('/penalties/edit', $pub->id) }} ">
                                         <i class="fa-regular fa-pen-to-square"></i>
@@ -117,6 +121,7 @@
                                     <a style="color: red" href=" {{ url('/penalties/delete', $pub->id) }} ">
                                         <button type="submit"><i class="fa-solid fa-trash"></i></button>
                                 </td>
+                                @endcan
                             </tr>
                         @endforeach
                     </tbody>
