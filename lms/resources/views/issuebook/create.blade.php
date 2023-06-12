@@ -45,16 +45,6 @@
                                         @if (Auth::check())
                                             Welcome, {{ Auth::user()->name }}
                                         @endif
-
-                                        {{-- <select class="form-select" name="studentId" id="inputGroupSelect01">
-                                            <option selected>Choose...</option>
-                                            @foreach ($st as $publication)
-                                                <option value="{{ $publication->id }}">
-                                                    Name: {{ $publication->name }} || Student ID
-                                                    {{ $publication->studentId }}
-                                                </option>
-                                            @endforeach
-                                        </select> --}}
                                     </div>
                                     {{-- branch  --}}
                                     <div class="mb-6">
@@ -78,7 +68,6 @@
                                                 style="color: red;">*</span></label>
                                         <select class="form-select" name="status" id="inputGroupSelect01">
                                             <option selected>Choose...</option>
-                                            <option>Return</option>
                                             <option>Pending</option>
                                         </select>
                                     </div>
@@ -106,7 +95,9 @@
                             <th scope="col">Student id | Name</th>
                             <th scope="col">Books</th>
                             <th scope="col">Return Books Status</th>
+                            @can('manage_users')
                             <th scope="col">Action</th>
+                            @endcan
                         </tr>
                     </thead>
                     <tbody>
@@ -120,6 +111,7 @@
                                 @else
                                     <td style="color: red">{{ $pub->status }}</td>
                                 @endif
+                                @can('manage_users')
                                 <td>
                                     <a style="color: black" href=" {{ url('/book-issue/edit', $pub->id) }} ">
                                         <i class="fa-regular fa-pen-to-square"></i>
@@ -127,6 +119,7 @@
                                     <a style="color: red" href=" {{ url('/book-issue/delete', $pub->id) }} ">
                                         <button type="submit"><i class="fa-solid fa-trash"></i></button>
                                 </td>
+                                @endcan
                             </tr>
                         @endforeach
                     </tbody>

@@ -23,16 +23,7 @@
                         @if (Auth::check())
                             Welcome, {{ Auth::user()->name }}
                         @endif
-                        {{-- <select class="form-select" name="studentId" id="inputGroupSelect01">
-                            <option selected>Choose...</option>
-                            @foreach ($bi as $publication)
-                                <option value="{{ $publication->id }}"
-                                    {{ $publication->id == $editIssue->studentId ? 'selected' : '' }}>
-                                    Name: {{ $publication->name }} || Student ID
-                                    {{ $publication->studentId }}
-                                </option>
-                            @endforeach
-                        </select> --}}
+                        
                     </div>
                     {{-- branch  --}}
                     <div class="mb-6">
@@ -57,7 +48,7 @@
                         <select class="form-select" name="status" id="inputGroupSelect01">
                             <option selected>Choose...</option>
                             <option value="Return"{{ $editIssue->status == 'Return' ? 'selected' : '' }}>Return</option>
-                            <option value="Pending"{{ $editIssue->status == 'Pending' ? 'selected' : '' }}>Pending
+                            {{-- <option value="Pending"{{ $editIssue->status == 'Pending' ? 'selected' : '' }}>Pending --}}
                             </option>
                         </select>
                     </div>

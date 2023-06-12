@@ -37,6 +37,7 @@ class IssueBooksController extends Controller
      */
     public function create(Request $request)
     {
+        // dd($request->all());
         $bi = new IssueBook();
         $bi->studentId = auth()->user()->id;
         $bi->booksId = $request['booksId'];
@@ -48,10 +49,6 @@ class IssueBooksController extends Controller
             $rechecking = Book::find($updateBooksId);
             $rechecking->remainingCopy = $rechecking->remainingCopy - 1;
             $rechecking->update();
-        } else if ($bi->status == 'Return') {
-            $update = Book::find($updateBooksId);
-            $update->remainingCopy = $update->remainingCopy + 1;
-            $update->update();
         } else {
             return "Something Went Wrong";
         }
@@ -118,12 +115,7 @@ class IssueBooksController extends Controller
         $bi->status = $request['status'];
 
         $updateBooksId = $request['booksId'];
-
-        if ($bi->status == 'Pending') {
-            $rechecking = Book::find($updateBooksId);
-            $rechecking->remainingCopy = $rechecking->remainingCopy - 1;
-            $rechecking->update();
-        } else if ($bi->status == 'Return') {
+        if ($bi->status == 'Return') {
             $update = Book::find($updateBooksId);
             $update->remainingCopy = $update->remainingCopy + 1;
             $update->update();

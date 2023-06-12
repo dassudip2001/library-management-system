@@ -119,11 +119,11 @@ Route::get('book-issue', [IssueBooksController::class, 'index'])->name('book-iss
 // create issues book
 Route::post('book-issue', [IssueBooksController::class, 'create'])->name('book-issue.create');
 // edit issues book
-Route::get('book-issue/edit/{id}', [IssueBooksController::class, 'edit'])->name('book-issue.edit');
+Route::get('book-issue/edit/{id}', [IssueBooksController::class, 'edit'])->name('book-issue.edit')->middleware('can:manage_users');
 // update issues book
-Route::put('book-issue/edit/{id}', [IssueBooksController::class, 'update'])->name('book-issue.update');
+Route::put('book-issue/edit/{id}', [IssueBooksController::class, 'update'])->name('book-issue.update')->middleware('can:manage_users');
 // delete issues book
-Route::get('book-issue/delete/{id}', [IssueBooksController::class, 'destroy'])->name('book-issue.destroy');
+Route::get('book-issue/delete/{id}', [IssueBooksController::class, 'destroy'])->name('book-issue.destroy')->middleware('can:manage_users');
 
 
 // book return
