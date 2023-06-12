@@ -20,16 +20,23 @@
                     {{-- studentId --}}
                     <div class="mb-6">
                         <label for="studentId"> Student Id</label>
-                        @if (Auth::check())
-                            Welcome, {{ Auth::user()->name }}
-                        @endif
+                        <select class="form-select" name="studentId" id="inputGroupSelect01">
+                            <option selected>Choose...</option>
+                            @foreach ($bi as $publication)
+                                <option value="{{ $publication->id }}"
+                                    {{ $publication->id == $editIssue->studentId ? 'selected' : '' }}>
+                                    Name: {{ $publication->name }} || Student ID
+                                    {{ $publication->studentId }}
+                                </option>
+                            @endforeach
+                        </select>
                         
                     </div>
                     {{-- branch  --}}
                     <div class="mb-6">
                         <label for="booksId"> Books</label>
                         <div class="input-group mb-3">
-                            <label class="input-group-text" for="inputGroupSelect01">Options</label>
+                            {{-- <label class="input-group-text" for="inputGroupSelect01">Options</label> --}}
                             <select class="form-select" name="booksId" id="inputGroupSelect01">
                                 <option selected>Choose...</option>
                                 @foreach ($br as $publication)
