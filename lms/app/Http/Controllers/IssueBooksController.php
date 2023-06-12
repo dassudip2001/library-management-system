@@ -23,9 +23,11 @@ class IssueBooksController extends Controller
             ->join('students', 'students.user_id', '=', 'users.id')->get();
 
         //show the table value 
-        $bi = Db::table('issue_books')
-            ->join('students', 'students.id', '=', 'issue_books.studentId')
-            ->join('books', 'books.id', '=', 'issue_books.booksId')->get();
+       $bi= DB::table('issue_books')
+            // ->join('students', 'students.id', '=', 'issue_books.studentId')
+            ->join('books', 'books.id', '=', 'issue_books.booksId')
+            ->join('students', 'students.id', '=', 'issue_books.id')
+            ->get();
         // $st = Student::get();
         return View('issuebook.create', compact('br', 'st', 'bi'));
     }
@@ -36,7 +38,7 @@ class IssueBooksController extends Controller
     public function create(Request $request)
     {
         $bi = new IssueBook();
-        $bi->studentId = $request['studentId'];
+        $bi->studentId = auth()->user()->id;
         $bi->booksId = $request['booksId'];
         $bi->status = $request['status'];
 
@@ -111,7 +113,7 @@ class IssueBooksController extends Controller
     public function update(Request $request, string $id)
     {
         $bi =  IssueBook::find($id);
-        $bi->studentId = $request['studentId'];
+        $bi->studentId = auth()->user()->id;
         $bi->booksId = $request['booksId'];
         $bi->status = $request['status'];
 

@@ -19,8 +19,11 @@
 
                     {{-- studentId --}}
                     <div class="mb-6">
-                        <label for="studentId"> Student Id<span class="required" style="color: red;">*</span></label>
-                        <select class="form-select" name="studentId" id="inputGroupSelect01">
+                        <label for="studentId"> Student Id</label>
+                        @if (Auth::check())
+                            Welcome, {{ Auth::user()->name }}
+                        @endif
+                        {{-- <select class="form-select" name="studentId" id="inputGroupSelect01">
                             <option selected>Choose...</option>
                             @foreach ($bi as $publication)
                                 <option value="{{ $publication->id }}"
@@ -29,11 +32,11 @@
                                     {{ $publication->studentId }}
                                 </option>
                             @endforeach
-                        </select>
+                        </select> --}}
                     </div>
                     {{-- branch  --}}
                     <div class="mb-6">
-                        <label for="booksId"> Books<span class="required" style="color: red;">*</span></label>
+                        <label for="booksId"> Books</label>
                         <div class="input-group mb-3">
                             <label class="input-group-text" for="inputGroupSelect01">Options</label>
                             <select class="form-select" name="booksId" id="inputGroupSelect01">
@@ -50,7 +53,7 @@
                     </div>
                     {{-- status --}}
                     <div class="mb-6">
-                        <label for="status">Return Status<span class="required" style="color: red;">*</span></label>
+                        <label for="status">Return Status</label>
                         <select class="form-select" name="status" id="inputGroupSelect01">
                             <option selected>Choose...</option>
                             <option value="Return"{{ $editIssue->status == 'Return' ? 'selected' : '' }}>Return</option>
