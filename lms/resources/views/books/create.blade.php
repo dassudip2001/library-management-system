@@ -93,6 +93,13 @@
                 @can('manage_users')
                 <button class="btn btn-primary float-end mt-2 mx-2" data-bs-target="#exampleModalToggle"
                     data-bs-toggle="modal">Add New Books</button>
+                    {{-- <div class="container">
+                        <form class="d-flex" role="search">
+                          <input class="form-control mt-1" type="search" placeholder="Search" aria-label="Search">
+                          <button class="btn btn-outline-success" type="submit">Search</button>
+                        </form>
+                      </div> --}}
+                    
                 <h5 class="mt-2 mx-2 fs-3"><b>Books</b> </h5>
                 <hr>
                 @endcan
