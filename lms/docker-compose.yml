@@ -1,52 +1,30 @@
-version: '3'
+version: "3.8"
 services:
-    app:
-        build:
-            context: .
-        ports:
-            - '8000:8000'
-        environment:
-            DB_HOST: db
-            DB_PORT: 3306
-            DB_DATABASE: laravel
-            DB_USERNAME: root
-            DB_PASSWORD: password
-        depends_on:
-            - db
-        volumes:
-            - '.:/var/www'
-    db:
-        image: 'mysql:8.0'
-        environment:
-            MYSQL_ROOT_PASSWORD: password
-            MYSQL_DATABASE: laravel
-        volumes:
-            - 'db_data:/var/lib/mysql'
-    mysql:
-        image: 'mysql/mysql-server:8.0'
-        ports:
-            - '${FORWARD_DB_PORT:-3306}:3306'
-        environment:
-            MYSQL_ROOT_PASSWORD: '${DB_PASSWORD}'
-            MYSQL_ROOT_HOST: '%'
-            MYSQL_DATABASE: '${DB_DATABASE}'
-            MYSQL_USER: '${DB_USERNAME}'
-            MYSQL_PASSWORD: '${DB_PASSWORD}'
-            MYSQL_ALLOW_EMPTY_PASSWORD: 1
-        volumes:
-            - 'sail-mysql:/var/lib/mysql'
-            - './vendor/laravel/sail/database/mysql/create-testing-database.sh:/docker-entrypoint-initdb.d/10-create-testing-database.sh'
-        networks:
-            - sail
-        healthcheck:
-            test:
-                - CMD
-                - mysqladmin
-                - ping
-                - '-p${DB_PASSWORD}'
-            retries: 3
-            timeout: 5s
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
+    networks:
+      - laravel
+
+  db:
+    image: mysql:8.0
+    environment:
+      MYSQL_DATABASE: laravel
+      MYSQL_USER: laravel
+      MYSQL_PASSWORD: laravel
+      MYSQL_ROOT_PASSWORD: laravel
+    volumes:
+      - db_data:/var/lib/mysql
+    networks:
+      - laravel
+
+networks:
+  laravel:
+
 volumes:
-    db_data: null
-    sail-mysql:
-        driver: local
+  db_data:
