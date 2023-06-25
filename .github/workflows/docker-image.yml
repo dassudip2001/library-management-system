@@ -14,7 +14,7 @@ jobs:
 
     steps:
     - name: Go to project dir
-      run: ls
+      run: cmd[ls]
 #     - uses: actions/checkout@v3
 #     - name: Build the Docker image
 #       run: sudo docker-compose -f docker-compose up -d --build
